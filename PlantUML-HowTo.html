@@ -1,0 +1,1215 @@
+<!DOCTYPE html><html><head>
+      <title>PlantUML-HowTo</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/tkato/.vscode-server/extensions/shd101wyy.markdown-preview-enhanced-0.6.3/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="plantuml%E3%81%AE%E5%88%A9%E7%94%A8">PlantUML&#x306E;&#x5229;&#x7528;</h1>
+
+<p>&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x539F;&#x5247;&#x3068;&#x3057;&#x3066;Unified Modeling Language (UML)&#x8868;&#x8A18;&#x3067;&#x8A2D;&#x8A08;&#x3092;&#x56F3;&#x793A;&#x3059;&#x308B;&#x3002;<br>
+UML&#x306E;&#x8868;&#x8A18;&#x6CD5;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;, <a href="https://www.amazon.co.jp/dp/4798107956">UML &#x30E2;&#x30C7;&#x30EA;&#x30F3;&#x30B0;&#x306E;&#x30A8;&#x30C3;&#x30BB;&#x30F3;&#x30B9;</a>&#x306A;&#x3069;&#x3092;&#x53C2;&#x7167;&#x3002;</p>
+<p>&#x672C;&#x6587;&#x66F8;&#x3067;&#x306F;, &#x672C;&#x958B;&#x767A;&#x3067;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x7BC4;&#x56F2;&#x306E;PlantUML&#x306E;&#x8868;&#x8A18;&#x306B;&#x3064;&#x3044;&#x3066;&#x306E;&#x307F;&#x8FF0;&#x3079;&#x308B;&#x3002;&#x4ED6;&#x306E;&#x8868;&#x8A18;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;, <a href="https://plantuml.com/ja/">PlantUML&#x516C;&#x5F0F;&#x6587;&#x66F8;</a>&#x3092;&#x53C2;&#x7167;&#x3002;</p>
+<h2 class="mume-header" id="%E7%9B%AE%E6%AC%A1">&#x76EE;&#x6B21;</h2>
+
+<ul>
+<li><a href="#plantuml%E3%81%AE%E5%88%A9%E7%94%A8">PlantUML&#x306E;&#x5229;&#x7528;</a>
+<ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">&#x76EE;&#x6B21;</a></li>
+<li><a href="#%E6%9C%AC%E9%96%8B%E7%99%BA%E3%81%A7%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8Buml%E5%9B%B3">&#x672C;&#x958B;&#x767A;&#x3067;&#x4F7F;&#x7528;&#x3059;&#x308B;UML&#x56F3;</a></li>
+<li><a href="#plantuml%E3%81%A7%E3%81%AEuml%E5%9B%B3%E8%A1%A8%E8%A8%98%E6%B3%95">PlantUML&#x3067;&#x306E;UML&#x56F3;&#x8868;&#x8A18;&#x6CD5;</a>
+<ul>
+<li><a href="#markdown%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E4%B8%AD%E3%81%A7%E3%81%AEuml%E5%9B%B3%E3%81%AE%E8%A8%98%E8%BC%89%E6%B3%95">markdown&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x4E2D;&#x3067;&#x306E;UML&#x56F3;&#x306E;&#x8A18;&#x8F09;&#x6CD5;</a></li>
+<li><a href="#plantuml%E3%81%A7%E3%81%AE%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E8%A1%A8%E8%A8%98%E6%96%B9%E6%B3%95">PlantUML&#x3067;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x8868;&#x8A18;&#x65B9;&#x6CD5;</a></li>
+<li><a href="#%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9%E5%9B%B3">&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;</a>
+<ul>
+<li><a href="#%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9%E5%9B%B3%E3%81%A8%E3%81%AF">&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x3068;&#x306F;</a></li>
+<li><a href="#%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A6%81%E7%B4%A0">&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x306E;&#x8981;&#x7D20;</a></li>
+<li><a href="#%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A1%A8%E8%A8%98%E6%B3%95">&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x6CD5;</a></li>
+</ul>
+</li>
+<li><a href="#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%9B%B3">&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;</a>
+<ul>
+<li><a href="#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%9B%B3%E3%81%A8%E3%81%AF">&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x3068;&#x306F;</a></li>
+<li><a href="#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%9B%B3%E3%81%AE%E8%A6%81%E7%B4%A0">&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x306E;&#x8981;&#x7D20;</a></li>
+<li><a href="#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%9B%B3%E3%81%AE%E8%A1%A8%E8%A8%98%E6%B3%95">&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x6CD5;</a></li>
+</ul>
+</li>
+<li><a href="#%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3">&#x30AF;&#x30E9;&#x30B9;&#x56F3;</a>
+<ul>
+<li><a href="#%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3%E3%81%A8%E3%81%AF">&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x3068;&#x306F;</a></li>
+<li><a href="#%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3%E3%81%AB%E8%A8%98%E8%BC%89%E3%81%99%E3%82%8B%E5%86%85%E5%AE%B9">&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306B;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x5185;&#x5BB9;</a>
+<ul>
+<li><a href="#%E9%9B%86%E7%B4%84%E3%82%84%E3%82%B3%E3%83%B3%E3%83%9D%E3%82%B8%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AB%E9%96%A2%E3%82%8F%E3%82%8B%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89%E3%82%92%E6%98%8E%E8%A8%98%E3%81%99%E3%82%8B%E7%90%86%E7%94%B1">&#x96C6;&#x7D04;&#x3084;&#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x95A2;&#x308F;&#x308B;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x30C9;&#x3092;&#x660E;&#x8A18;&#x3059;&#x308B;&#x7406;&#x7531;</a></li>
+</ul>
+</li>
+<li><a href="#%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3%E3%81%AB%E8%A8%98%E8%BC%89%E3%81%97%E3%81%AA%E3%81%84%E5%86%85%E5%AE%B9">&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306B;&#x8A18;&#x8F09;&#x3057;&#x306A;&#x3044;&#x5185;&#x5BB9;</a></li>
+<li><a href="#%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A6%81%E7%B4%A0">&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306E;&#x8981;&#x7D20;</a>
+<ul>
+<li><a href="#%E9%96%A2%E9%80%A3%E3%81%AE%E5%A4%9A%E9%87%8D%E5%BA%A6%E3%81%AE%E8%A1%A8%E8%A8%98%E6%96%B9%E6%B3%95">&#x95A2;&#x9023;&#x306E;&#x591A;&#x91CD;&#x5EA6;&#x306E;&#x8868;&#x8A18;&#x65B9;&#x6CD5;</a></li>
+</ul>
+</li>
+<li><a href="#%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A1%A8%E8%A8%98%E6%B3%95">&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x6CD5;</a></li>
+</ul>
+</li>
+<li><a href="#%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3">&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;</a>
+<ul>
+<li><a href="#%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3%E3%81%A8%E3%81%AF">&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x3068;&#x306F;</a></li>
+<li><a href="#%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A6%81%E7%B4%A0">&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x306E;&#x8981;&#x7D20;</a></li>
+<li><a href="#%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A1%A8%E8%A8%98%E6%B3%95">&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x6CD5;</a>
+<ul>
+<li><a href="#%E3%82%A2%E3%82%AF%E3%82%BF%E3%83%BC%E3%82%84%E5%8F%82%E5%8A%A0%E8%80%85%E3%81%AE%E4%B8%80%E8%A6%A7%E3%82%92%E8%A8%98%E8%BC%89%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AE%E9%A0%86%E5%BA%8F">&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x306E;&#x4E00;&#x89A7;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x969B;&#x306E;&#x9806;&#x5E8F;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E7%8A%B6%E6%85%8B%E3%83%9E%E3%82%B7%E3%83%B3%E5%9B%B3">&#x72B6;&#x614B;&#x30DE;&#x30B7;&#x30F3;&#x56F3;</a>
+<ul>
+<li><a href="#%E7%8A%B6%E6%85%8B%E3%83%9E%E3%82%B7%E3%83%B3%E5%9B%B3%E3%81%A8%E3%81%AF">&#x72B6;&#x614B;&#x30DE;&#x30B7;&#x30F3;&#x56F3;&#x3068;&#x306F;</a></li>
+<li><a href="#%E7%8A%B6%E6%85%8B%E3%83%9E%E3%82%B7%E3%83%B3%E5%9B%B3%E3%81%AE%E8%A6%81%E7%B4%A0">&#x72B6;&#x614B;&#x30DE;&#x30B7;&#x30F3;&#x56F3;&#x306E;&#x8981;&#x7D20;</a></li>
+<li><a href="#%E7%8A%B6%E6%85%8B%E3%83%9E%E3%82%B7%E3%83%B3%E5%9B%B3%E3%81%AE%E8%A1%A8%E8%A8%98%E6%B3%95">&#x72B6;&#x614B;&#x30DE;&#x30B7;&#x30F3;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x6CD5;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="%E6%9C%AC%E9%96%8B%E7%99%BA%E3%81%A7%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8Buml%E5%9B%B3">&#x672C;&#x958B;&#x767A;&#x3067;&#x4F7F;&#x7528;&#x3059;&#x308B;UML&#x56F3;</h2>
+
+<p>&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x4EE5;&#x4E0B;&#x306E;UML&#x56F3;&#x3092;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x8A2D;&#x8A08;&#x3092;&#x56F3;&#x793A;&#x3059;&#x308B;&#x3002;</p>
+<h2 class="mume-header" id="plantuml%E3%81%A7%E3%81%AEuml%E5%9B%B3%E8%A1%A8%E8%A8%98%E6%B3%95">PlantUML&#x3067;&#x306E;UML&#x56F3;&#x8868;&#x8A18;&#x6CD5;</h2>
+
+<p>&#x672C;&#x7BC0;&#x3067;&#x306F;, PlantUML&#x3067;&#x306E;UML&#x56F3;&#x8868;&#x8A18;&#x6CD5;&#x306B;&#x3064;&#x3044;&#x3066;&#x8FF0;&#x3079;&#x308B;&#x3002;</p>
+<h3 class="mume-header" id="markdown%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E4%B8%AD%E3%81%A7%E3%81%AEuml%E5%9B%B3%E3%81%AE%E8%A8%98%E8%BC%89%E6%B3%95">markdown&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x4E2D;&#x3067;&#x306E;UML&#x56F3;&#x306E;&#x8A18;&#x8F09;&#x6CD5;</h3>
+
+<p>&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x4ED8;&#x5E2F;&#x6587;&#x66F8;&#x3092;<a href="https://daringfireball.net/projects/markdown/">markdown&#x8A18;&#x6CD5;</a>&#x3067;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+<p>&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, markdown&#x4E2D;&#x306B;&#x4EE5;&#x4E0B;&#x306E;&#x5F62;&#x5F0F;&#x3067;PlantUML&#x8868;&#x8A18;&#x306B;&#x3088;&#x308A;UML&#x56F3;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown"><span class="token code"><span class="token punctuation">```</span><span class="token code-language">plantuml</span>
+<span class="token code-block">@startuml
+PlantUML&#x306B;&#x3088;&#x308B;UML&#x56F3;&#x8868;&#x8A18;
+@enduml</span>
+<span class="token punctuation">```</span></span>
+</pre><h3 class="mume-header" id="plantuml%E3%81%A7%E3%81%AE%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E8%A1%A8%E8%A8%98%E6%96%B9%E6%B3%95">PlantUML&#x3067;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x8868;&#x8A18;&#x65B9;&#x6CD5;</h3>
+
+<p>PlantUML&#x3067;&#x306F;, &#x8907;&#x6570;&#x884C;&#x306B;&#x308F;&#x305F;&#x308B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;<code>/&apos;</code>&#x3068;<code>&apos;/</code>&#x3067;&#x56F2;&#x3063;&#x3066;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;, <code>&apos;</code>&#x3067;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306E;&#x8A18;&#x8F09;&#x4F8B;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x901A;&#x308A;&#x3002;</p>
+<pre data-role="codeBlock" data-info="text" class="language-text">/&apos; &#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306E;&#x4F8B;
+   &#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;
+&apos;/
+
+&apos;&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;
+</pre><h3 class="mume-header" id="%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9%E5%9B%B3">&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;</h3>
+
+<p>&#x672C;&#x7BC0;&#x3067;&#x306F;, &#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x65B9;&#x6CD5;&#x306B;&#x3064;&#x3044;&#x3066;&#x8FF0;&#x3079;&#x308B;&#x3002;</p>
+<h4 class="mume-header" id="%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9%E5%9B%B3%E3%81%A8%E3%81%AF">&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x3068;&#x306F;</h4>
+
+<p>&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x306F;, &#x5916;&#x90E8;&#x306E;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x304B;&#x3089;&#x898B;&#x3066;, &#x958B;&#x767A;&#x5BFE;&#x8C61;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x304C;&#x3069;&#x306E;&#x3088;&#x3046;&#x306B;&#x632F;&#x308B;&#x821E;&#x3046;&#x304B;&#x3092;&#x8A18;&#x8F09;&#x3057;&#x305F;&#x56F3;&#x3067;&#x3042;&#x308B;&#x3002;</p>
+<p>&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x304C;&#x30E6;&#x30FC;&#x30B6;&#x3084;&#x4ED6;&#x306E;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306B;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x6A5F;&#x80FD;&#x30FB;&#x632F;&#x308B;&#x821E;&#x3044;&#x304A;&#x3088;&#x3073;<strong>&#x958B;&#x767A;&#x5BFE;&#x8C61;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x3067;&#x6271;&#x308F;&#x306A;&#x3044;&#x6A5F;&#x80FD;&#x30FB;&#x632F;&#x308B;&#x821E;&#x3044;</strong>&#x3092;&#x56F3;&#x793A;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x3002;</p>
+<h4 class="mume-header" id="%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A6%81%E7%B4%A0">&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x306E;&#x8981;&#x7D20;</h4>
+
+<p>&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x306E;&#x8981;&#x7D20;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x901A;&#x308A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8981;&#x7D20;</th>
+<th>PlantUML&#x3067;&#x306E;&#x8868;&#x8A18;</th>
+<th>&#x610F;&#x5473;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x30A2;&#x30AF;&#x30BF;&#x30FC;</td>
+<td>actor &#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x540D;</td>
+<td>&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x30E6;&#x30FC;&#x30B6;&#x3092;&#x8868;&#x3059;&#x3002;&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x306B;&#x306F;, &#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x5229;&#x7528;&#x8005;, &#x958B;&#x767A;&#x5BFE;&#x8C61;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x3068;&#x9023;&#x643A;&#x3057;&#x3066;&#x52D5;&#x4F5C;&#x3059;&#x308B;&#x4ED6;&#x306E;&#x30BD;&#x30D5;&#x30C8;&#x30A6;&#x30A8;&#x30A2;&#x30B7;&#x30B9;&#x30C6;&#x30E0;, &#x30CF;&#x30FC;&#x30C9;&#x30A6;&#x30A8;&#x30A2;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;</td>
+<td>usecase &#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;</td>
+<td>&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x30E6;&#x30FC;&#x30B6;&#x9593;&#x3067;&#x5171;&#x901A;&#x306E;&#x76EE;&#x7684;&#x3092;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x30B7;&#x30CA;&#x30EA;&#x30AA;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x95A2;&#x9023;(Association)</td>
+<td>&#x30A2;&#x30AF;&#x30BF;&#x30FC; <code>--</code> &#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;:&#x610F;&#x5473;</td>
+<td>&#x3069;&#x306E;&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x304C;&#x3069;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3092;&#x5B9F;&#x65BD;&#x3059;&#x308B;&#x304B;&#x3092;&#x8868;&#x3059;&#x7DDA;&#x5206;</td>
+</tr>
+<tr>
+<td>&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;</td>
+<td>&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;1 <code>--&gt;</code> &#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;2</td>
+<td>&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;1&#x304C;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;2&#x306B;&#x4F9D;&#x5B58;&#x3059;&#x308B;&#x3053;&#x3068;&#x3092;&#x8868;&#x3059;&#x77E2;&#x5370;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x5178;&#x578B;&#x7684;&#x306B;&#x306F;, &#x4E0A;&#x8A18;&#x306E;&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x306B;&#x306F;, &#x4EE5;&#x4E0B;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+<ul>
+<li>&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x5229;&#x7528;&#x8005;</li>
+<li>&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x304C;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x6A5F;&#x80FD;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x30BD;&#x30D5;&#x30C8;&#x30A6;&#x30A8;&#x30A2;</li>
+<li>&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x304B;&#x3089;&#x547C;&#x3073;&#x51FA;&#x3059;(&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3084;OS&#x306A;&#x3069;&#x306E;)&#x4ED6;&#x306E;&#x30BD;&#x30D5;&#x30C8;&#x30A6;&#x30A8;&#x30A2;</li>
+<li>&#x5272;&#x8FBC;&#x307F;&#x3084;&#x30B7;&#x30B0;&#x30CA;&#x30EB;, &#x4F8B;&#x5916;&#x306A;&#x3069;&#x3092;&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306B;&#x901A;&#x77E5;&#x3059;&#x308B;CPU/&#x30C7;&#x30D0;&#x30A4;&#x30B9;&#x306A;&#x3069;&#x306E;&#x30CF;&#x30FC;&#x30C9;&#x30A6;&#x30A8;&#x30A2;</li>
+<li>&#x51FA;&#x529B;&#x7D50;&#x679C;&#x3092;&#x753B;&#x9762;&#x306B;&#x8868;&#x793A;&#x3059;&#x308B;&#x7AEF;&#x672B;</li>
+</ul>
+<h4 class="mume-header" id="%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A1%A8%E8%A8%98%E6%B3%95">&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x6CD5;</h4>
+
+<p>&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x3092;&#x4EE5;&#x4E0B;&#x306E;&#x5F62;&#x5F0F;&#x306E;PlantUML&#x8868;&#x8A18;&#x3067;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+<pre data-role="codeBlock" data-info="text" class="language-text">&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x306E;&#x4E00;&#x89A7;
+rectangle &quot;&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&quot; {
+&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x306E;&#x4E00;&#x89A7;
+}
+rectangle &quot;&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x5916;&#x306E;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&quot; {
+&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x5916;&#x306E;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x306E;&#x4E00;&#x89A7;
+}
+...
+&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3092;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x30A2;&#x30AF;&#x30BF;&#x30FC;
+&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x9593;&#x306E;&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;
+</pre><p>&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x306E;&#x8A18;&#x8F09;&#x4F8B;&#x3068;&#x3057;&#x3066;, &#x5229;&#x7528;&#x8005;&#x304C;&#x7AEF;&#x672B;&#x307E;&#x305F;&#x306F;&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304B;&#x3089;&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5143;&#x306B;&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3057;, &#x7AEF;&#x672B;&#x306B;&#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;, &#x307E;&#x305F;&#x306F;, &#x904B;&#x7528;&#x7BA1;&#x7406;&#x62C5;&#x5F53;&#x8005;&#x304C;&#x7528;&#x610F;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x7D50;&#x679C;&#x3092;&#x8A18;&#x9332;&#x3059;&#x308B;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306B;&#x5BFE;&#x3059;&#x308B;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x3092;&#x4EE5;&#x4E0B;&#x306B;&#x793A;&#x3059;&#x3002;</p>
+<pre data-role="codeBlock" data-info="text" class="language-text">@startuml
+/&apos; &#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x306E;&#x4E00;&#x89A7;
+&apos;/
+actor &#x5229;&#x7528;&#x8005;
+actor &#x904B;&#x7528;&#x7BA1;&#x7406;&#x62C5;&#x5F53;&#x8005;
+actor &#x7AEF;&#x672B;
+actor &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;
+actor &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;
+/&apos; &#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x5185;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x306E;&#x4E00;&#x89A7;
+&apos;/
+rectangle &quot;&#x672C;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&quot; {
+  usecase &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;
+  usecase &#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;
+  usecase &#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;
+  usecase &#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;
+  usecase &#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B;
+}
+/&apos; &#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x5916;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x306E;&#x4E00;&#x89A7;
+&apos;/
+rectangle &quot;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x904B;&#x7528;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&quot; {
+  usecase &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x521D;&#x671F;&#x5316;&#x3059;&#x308B;
+  usecase &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30D0;&#x30C3;&#x30AF;&#x30A2;&#x30C3;&#x30D7;&#x3059;&#x308B;
+  usecase &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30EA;&#x30B9;&#x30C8;&#x30A2;&#x3059;&#x308B;
+  usecase &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x7834;&#x68C4;&#x3059;&#x308B;
+}
+/&apos; &#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3092;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x30A2;&#x30AF;&#x30BF;&#x30FC;
+&apos;/
+&#x5229;&#x7528;&#x8005; -- &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;
+&#x5229;&#x7528;&#x8005; -- &#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;
+&#x7AEF;&#x672B; -- &#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;
+&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9; -- &#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B;
+&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB; -- &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;
+&#x904B;&#x7528;&#x7BA1;&#x7406;&#x62C5;&#x5F53;&#x8005; -- &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x521D;&#x671F;&#x5316;&#x3059;&#x308B;
+&#x904B;&#x7528;&#x7BA1;&#x7406;&#x62C5;&#x5F53;&#x8005; -- &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30D0;&#x30C3;&#x30AF;&#x30A2;&#x30C3;&#x30D7;&#x3059;&#x308B;
+&#x904B;&#x7528;&#x7BA1;&#x7406;&#x62C5;&#x5F53;&#x8005; -- &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30EA;&#x30B9;&#x30C8;&#x30A2;&#x3059;&#x308B;
+&#x904B;&#x7528;&#x7BA1;&#x7406;&#x62C5;&#x5F53;&#x8005; -- &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x7834;&#x68C4;&#x3059;&#x308B;
+&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9; -- &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x521D;&#x671F;&#x5316;&#x3059;&#x308B;
+&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9; -- &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30D0;&#x30C3;&#x30AF;&#x30A2;&#x30C3;&#x30D7;&#x3059;&#x308B;
+&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9; -- &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30EA;&#x30B9;&#x30C8;&#x30A2;&#x3059;&#x308B;
+&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9; -- &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x7834;&#x68C4;&#x3059;&#x308B;
+/&apos; &#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x9593;&#x306E;&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;
+&apos;/
+&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B; --&gt; &#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;
+&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B; --&gt; &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;
+&#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B; --&gt; &#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;
+&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B; --&gt; &#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;
+</pre><p>&#x4E0A;&#x8A18;&#x3092;&#x56F3;&#x793A;&#x3057;&#x305F;&#x4F8B;&#x3092;&#x4EE5;&#x4E0B;&#x306B;&#x793A;&#x3059;&#x3002;</p>
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="627px" preserveAspectRatio="none" style="width:1594px;height:627px;background:#FFFFFF;" version="1.1" viewBox="0 0 1594 627" width="1594px" zoomAndPan="magnify"><defs><filter height="300%" id="ftwhmy1cagrrx" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[396eca23accece7acb7320aa55a85d0a]
+cluster 本システム--><rect fill="#FFFFFF" filter="url(#ftwhmy1cagrrx)" height="503.5" style="stroke:#000000;stroke-width:1.5;" width="465" x="64" y="112"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="70" x="261.5" y="130.2399">&#x672C;&#x30B7;&#x30B9;&#x30C6;&#x30E0;</text><!--MD5=[a343d95d194e6bde0340a88003eb88f6]
+cluster データベース運用システム--><rect fill="#FFFFFF" filter="url(#ftwhmy1cagrrx)" height="110" style="stroke:#000000;stroke-width:1.5;" width="1029" x="553" y="110.5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="168" x="983.5" y="128.7399">&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x904B;&#x7528;&#x30B7;&#x30B9;&#x30C6;&#x30E0;</text><ellipse cx="181.235" cy="577.147" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="101.235" ry="22.647" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="101.235" y="582.517">&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;</text><ellipse cx="177.0433" cy="451.9087" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="85.0433" ry="19.4087" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="118.0433" y="457.2786">&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;</text><ellipse cx="177.1629" cy="306.9326" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="80.1629" ry="18.4326" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="125.1629" y="312.3025">&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;</text><ellipse cx="160.1629" cy="176.9326" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="80.1629" ry="18.4326" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="108.1629" y="182.3025">&#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;</text><ellipse cx="393.9789" cy="177.1958" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="118.9789" ry="26.1958" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="196" x="292.9789" y="182.5657">&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B;</text><ellipse cx="1459.015" cy="176.803" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="107.015" ry="23.803" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168" x="1372.015" y="182.173">&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x521D;&#x671F;&#x5316;&#x3059;&#x308B;</text><ellipse cx="1192.1358" cy="176.9272" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="125.1358" ry="27.4272" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="210" x="1084.9495" y="181.9888">&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30D0;&#x30C3;&#x30AF;&#x30A2;&#x30C3;&#x30D7;&#x3059;&#x308B;</text><ellipse cx="918.9368" cy="176.9874" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="112.9368" ry="24.9874" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="182" x="824.9368" y="182.3573">&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30EA;&#x30B9;&#x30C8;&#x30A2;&#x3059;&#x308B;</text><ellipse cx="670.235" cy="177.147" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="101.235" ry="22.647" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="590.235" y="182.517">&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x7834;&#x68C4;&#x3059;&#x308B;</text><!--MD5=[b1030581ff8764b539e95d89ffd58376]
+entity 利用者--><ellipse cx="27" cy="274" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M27,282 L27,309 M14,290 L40,290 M27,309 L14,324 M27,309 L40,324 " fill="none" filter="url(#ftwhmy1cagrrx)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="6" y="345.7399">&#x5229;&#x7528;&#x8005;</text><!--MD5=[f0fd1d7db1ba117ba41210f558720618]
+entity 運用管理担当者--><ellipse cx="1118" cy="14" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M1118,22 L1118,49 M1105,30 L1131,30 M1118,49 L1105,64 M1118,49 L1131,64 " fill="none" filter="url(#ftwhmy1cagrrx)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="1069" y="85.7399">&#x904B;&#x7528;&#x7BA1;&#x7406;&#x62C5;&#x5F53;&#x8005;</text><!--MD5=[d8ec4f216d8d78bcbf3b353f393a8206]
+entity 端末--><ellipse cx="160" cy="14" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M160,22 L160,49 M147,30 L173,30 M160,49 L147,64 M160,49 L173,64 " fill="none" filter="url(#ftwhmy1cagrrx)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="146" y="85.7399">&#x7AEF;&#x672B;</text><!--MD5=[9dde73a266ab2b929168dd578303b015]
+entity データベース--><ellipse cx="919" cy="14" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M919,22 L919,49 M906,30 L932,30 M919,49 L906,64 M919,49 L932,64 " fill="none" filter="url(#ftwhmy1cagrrx)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84" x="877" y="85.7399">&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;</text><!--MD5=[201c4d3352aa4ed1769b322fb8f5211d]
+entity 入力ファイル--><ellipse cx="587" cy="419" fill="#FEFECE" filter="url(#ftwhmy1cagrrx)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M587,427 L587,454 M574,435 L600,435 M587,454 L574,469 M587,454 L600,469 " fill="none" filter="url(#ftwhmy1cagrrx)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84" x="545" y="490.7399">&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;</text><!--MD5=[56d3b194682e32562a8959f967caf592]
+link 利用者 to 入力ファイルを指定する--><path d="M29.92,349.69 C34.43,389.71 45.89,450.42 75,494.5 C92.2,520.55 120.59,541.73 143.66,555.96 " fill="none" id="&#x5229;&#x7528;&#x8005;-&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[21dc8eecb98df302eabcbf9e529516ee]
+link 利用者 to 入力データを得る--><path d="M48.08,332.55 C53.18,338.23 58.69,344.17 64,349.5 C94.52,380.14 132.31,413.18 155.53,432.97 " fill="none" id="&#x5229;&#x7528;&#x8005;-&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[c8915b21d9874dadc3e461cc0043b545]
+link 端末 to 結果を表示する--><path d="M160,89.56 C160,112.77 160,140.5 160,158.17 " fill="none" id="&#x7AEF;&#x672B;-&#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[3b094e2e1c8cacd66e21228e9028912f]
+link データベース to 結果をデータベースに記録する--><path d="M876.99,50.36 C808.06,55.09 667.18,68.38 553,102.5 C511.62,114.87 467.23,136.13 435.89,152.61 " fill="none" id="&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;-&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[382c4b7ccbc76c340216ded75896af39]
+link 入力ファイル to 入力ファイルを指定する--><path d="M544.75,486.01 C539.61,489.18 534.3,492.1 529,494.5 C444.51,532.8 340.02,554.16 267.7,565.3 " fill="none" id="&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;-&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[d87a6fbaad0ac9319e5c0f9b3767feb5]
+link 運用管理担当者 to データベースを初期化する--><path d="M1167.12,56.13 C1211.96,64.53 1279.51,79.65 1335,102.5 C1368.32,116.22 1403.39,137.76 1427.7,153.98 " fill="none" id="&#x904B;&#x7528;&#x7BA1;&#x7406;&#x62C5;&#x5F53;&#x8005;-&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x521D;&#x671F;&#x5316;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[b9386f95981234b4148aa0fe8285c544]
+link 運用管理担当者 to データベースをバックアップする--><path d="M1142.03,89.56 C1153.42,109.27 1166.69,132.23 1176.7,149.53 " fill="none" id="&#x904B;&#x7528;&#x7BA1;&#x7406;&#x62C5;&#x5F53;&#x8005;-&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30D0;&#x30C3;&#x30AF;&#x30A2;&#x30C3;&#x30D7;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[25526a974cd741a93c73cc65033b1973]
+link 運用管理担当者 to データベースをリストアする--><path d="M1068.81,79.64 C1033.36,102.44 986.35,132.68 954.51,153.16 " fill="none" id="&#x904B;&#x7528;&#x7BA1;&#x7406;&#x62C5;&#x5F53;&#x8005;-&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30EA;&#x30B9;&#x30C8;&#x30A2;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[8d0a7c97b5e4a34afcfdfe0ce330fff1]
+link 運用管理担当者 to データベースを破棄する--><path d="M1068.79,65.6 C1042.49,74.26 1009.36,84 979,89.5 C895.71,104.59 869.59,76.61 789,102.5 C753.86,113.79 718.5,137.58 695.56,155.05 " fill="none" id="&#x904B;&#x7528;&#x7BA1;&#x7406;&#x62C5;&#x5F53;&#x8005;-&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x7834;&#x68C4;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[177318ba59cf820010810018c7490ac9]
+link データベース to データベースを初期化する--><path d="M961.14,64.2 C986.96,73.35 1020.91,84.03 1052,89.5 C1114,100.41 1274.68,84.47 1335,102.5 C1370.73,113.18 1406.87,136.33 1430.84,153.81 " fill="none" id="&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;-&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x521D;&#x671F;&#x5316;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[2d6d60b025542a88942d16b60c9cc2e8]
+link データベース to データベースをバックアップする--><path d="M961.28,64.55 C987.13,74.92 1020.75,88.87 1050,102.5 C1082.84,117.8 1119.1,136.6 1146.76,151.36 " fill="none" id="&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;-&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30D0;&#x30C3;&#x30AF;&#x30A2;&#x30C3;&#x30D7;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[00d5020b8094c38c33aaff2b4921cf8f]
+link データベース to データベースをリストアする--><path d="M919,89.56 C919,110.14 919,134.28 919,151.8 " fill="none" id="&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;-&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x30EA;&#x30B9;&#x30C8;&#x30A2;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[b85ac5867302744976c0fb515cb867c3]
+link データベース to データベースを破棄する--><path d="M876.97,63.69 C851.14,73.8 817.62,87.78 789,102.5 C757.91,118.5 724.14,139.75 700.55,155.29 " fill="none" id="&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;-&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x7834;&#x68C4;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[38915b639837aa0465d8ab345e507392]
+link 結果を算出する to 入力データを得る--><path d="M177,325.53 C177,351.09 177,398.64 177,427.29 " fill="none" id="&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;-to-&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="177,432.42,181,423.42,177,427.42,173,423.42,177,432.42" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[86c38ec71a9c8b8e9866c0c260e94bdd]
+link 入力データを得る to 入力ファイルを指定する--><path d="M177.61,471.68 C178.28,492.3 179.36,525.66 180.13,549.1 " fill="none" id="&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;-to-&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="180.29,554.23,184.0053,545.1088,180.1329,549.2325,176.0093,545.3601,180.29,554.23" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e146a57d9fc950270ad434fb8cdc004a]
+link 結果を表示する to 結果を算出する--><path d="M162.33,195.53 C165.35,218.29 170.63,258.05 173.97,283.15 " fill="none" id="&#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;-to-&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="174.65,288.27,177.4058,278.8146,173.9789,283.3152,169.4782,279.8883,174.65,288.27" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[5d68396fedfabc14e1943faa0c5b7597]
+link 結果をデータベースに記録する to 結果を算出する--><path d="M353.95,201.63 C312.29,226.2 247.88,264.19 209.34,286.93 " fill="none" id="&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B;-to-&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="204.77,289.62,214.5545,288.4961,209.0775,287.0812,210.4924,281.6041,204.77,289.62" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[64a9099f2a1f8ca250a8c9020a76aea9]
+@startuml
+/' アクターの一覧
+'/
+actor 利用者
+actor 運用管理担当者
+actor 端末
+actor データベース
+actor 入力ファイル
+/' 開発システム内のユースケースの一覧
+'/
+rectangle "本システム" {
+  usecase 入力ファイルを指定する
+  usecase 入力データを得る
+  usecase 結果を算出する
+  usecase 結果を表示する
+  usecase 結果をデータベースに記録する
+}
+/' 開発システム外のユースケースの一覧
+'/
+rectangle "データベース運用システム" {
+  usecase データベースを初期化する
+  usecase データベースをバックアップする
+  usecase データベースをリストアする
+  usecase データベースを破棄する
+}
+/' ユースケースを実現するアクター
+'/
+利用者 - - 入力ファイルを指定する
+利用者 - - 入力データを得る
+端末 - - 結果を表示する
+データベース - - 結果をデータベースに記録する
+入力ファイル - - 入力ファイルを指定する
+運用管理担当者 - - データベースを初期化する
+運用管理担当者 - - データベースをバックアップする
+運用管理担当者 - - データベースをリストアする
+運用管理担当者 - - データベースを破棄する
+データベース - - データベースを初期化する
+データベース - - データベースをバックアップする
+データベース - - データベースをリストアする
+データベース - - データベースを破棄する
+/' ユースケース間の依存関係
+'/
+結果を算出する - -> 入力データを得る
+入力データを得る - -> 入力ファイルを指定する
+結果を表示する - -> 結果を算出する
+結果をデータベースに記録する - -> 結果を算出する
+@enduml
+
+@startuml
+actor 利用者
+actor 運用管理担当者
+actor 端末
+actor データベース
+actor 入力ファイル
+rectangle "本システム" {
+  usecase 入力ファイルを指定する
+  usecase 入力データを得る
+  usecase 結果を算出する
+  usecase 結果を表示する
+  usecase 結果をデータベースに記録する
+}
+rectangle "データベース運用システム" {
+  usecase データベースを初期化する
+  usecase データベースをバックアップする
+  usecase データベースをリストアする
+  usecase データベースを破棄する
+}
+利用者 - - 入力ファイルを指定する
+利用者 - - 入力データを得る
+端末 - - 結果を表示する
+データベース - - 結果をデータベースに記録する
+入力ファイル - - 入力ファイルを指定する
+運用管理担当者 - - データベースを初期化する
+運用管理担当者 - - データベースをバックアップする
+運用管理担当者 - - データベースをリストアする
+運用管理担当者 - - データベースを破棄する
+データベース - - データベースを初期化する
+データベース - - データベースをバックアップする
+データベース - - データベースをリストアする
+データベース - - データベースを破棄する
+結果を算出する - -> 入力データを得る
+入力データを得る - -> 入力ファイルを指定する
+結果を表示する - -> 結果を算出する
+結果をデータベースに記録する - -> 結果を算出する
+@enduml
+
+PlantUML version 1.2021.12(Wed Oct 06 01:01:58 JST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: ja
+Country: JP
+--></g></svg></p><h3 class="mume-header" id="%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%9B%B3">&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;</h3>
+
+<p>&#x672C;&#x7BC0;&#x3067;&#x306F;, &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x65B9;&#x6CD5;&#x306B;&#x3064;&#x3044;&#x3066;&#x8FF0;&#x3079;&#x308B;&#x3002;</p>
+<h4 class="mume-header" id="%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%9B%B3%E3%81%A8%E3%81%AF">&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x3068;&#x306F;</h4>
+
+<p>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x306F;, UML&#x306E;&#x8981;&#x7D20;&#x3092;&#x30B0;&#x30EB;&#x30FC;&#x30D7;&#x5316;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;, &#x8AD6;&#x7406;&#x7684;&#x306A;&#x67A0;&#x7D44;&#x307F;&#x3092;&#x4E0E;&#x3048;, &#x958B;&#x767A;&#x5BFE;&#x8C61;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x8AD6;&#x7406;&#x69CB;&#x9020;&#x3092;&#x56F3;&#x793A;&#x3059;&#x308B;&#x3002;</p>
+<h4 class="mume-header" id="%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%9B%B3%E3%81%AE%E8%A6%81%E7%B4%A0">&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x306E;&#x8981;&#x7D20;</h4>
+
+<p>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x306E;&#x8981;&#x7D20;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x901A;&#x308A;&#x3002;PlantUML&#x3067;&#x306F;, &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x306F;, &#x914D;&#x7F6E;&#x56F3;(Deployment Diagram)&#x306E;&#x4E00;&#x7A2E;&#x3068;&#x3057;&#x3066;&#x6271;&#x308F;&#x308C;&#x308B;&#x3002;&#x307E;&#x305F;, PlantUML&#x3067;&#x306F;, &#x539F;&#x5247;&#x3068;&#x3057;&#x3066;, &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306B;&#x542B;&#x307E;&#x308C;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x5B9A;&#x7FA9;&#x306F;&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x3067;&#x8868;&#x8A18;&#x3059;&#x308B;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8981;&#x7D20;</th>
+<th>PlantUML&#x3067;&#x306E;&#x8868;&#x8A18;</th>
+<th>&#x610F;&#x5473;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x30A2;&#x30AF;&#x30BF;&#x30FC;</td>
+<td>actor &#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x540D;</td>
+<td>&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x30E6;&#x30FC;&#x30B6;&#x3092;&#x8868;&#x3059;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;</td>
+<td>usecase &#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;</td>
+<td>&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x30E6;&#x30FC;&#x30B6;&#x9593;&#x3067;&#x5171;&#x901A;&#x306E;&#x76EE;&#x7684;&#x3092;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x30B7;&#x30CA;&#x30EA;&#x30AA;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x30D5;&#x30A1;&#x30A4;&#x30EB;</td>
+<td>file &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x540D;</td>
+<td>&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x4E2D;&#x3067;&#x5229;&#x7528;&#x3059;&#x308B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x8868;&#x3059;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;</td>
+<td>database &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x540D;</td>
+<td>&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x4E2D;&#x3067;&#x5229;&#x7528;&#x3059;&#x308B;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x3092;&#x8868;&#x3059;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;</td>
+<td>package &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x540D;</td>
+<td>UML&#x306E;&#x8981;&#x7D20;&#x306E;&#x30B0;&#x30EB;&#x30FC;&#x30D7;&#x3092;&#x8868;&#x3059;&#x3002;&#x5178;&#x578B;&#x7684;&#x306B;&#x306F;, &#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x306E;&#x30ED;&#x30FC;&#x30C9;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x4E00;&#x3064;&#x3068;&#x3057;&#x3066;&#x8868;&#x8A18;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x95A2;&#x9023;(Association)</td>
+<td>&#x8981;&#x7D20;1 <code>--</code> &#x8981;&#x7D20;2:&#x610F;&#x5473;</td>
+<td><code>&#x8981;&#x7D20;1</code>&#x3068;<code>&#x8981;&#x7D20;2</code>&#x304C;<code>&#x610F;&#x5473;</code>&#x306B;&#x8A18;&#x3057;&#x305F;&#x95A2;&#x9023;&#x3092;&#x6301;&#x3064;&#x3053;&#x3068;&#x3092;&#x8868;&#x3059;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;</td>
+<td>&#x8981;&#x7D20;1 <code>--&gt;</code> &#x8981;&#x7D20;2</td>
+<td><code>&#x8981;&#x7D20;1</code>&#x304C;<code>&#x8981;&#x7D20;2</code>&#x306B;&#x4F9D;&#x5B58;&#x3059;&#x308B;&#x3053;&#x3068;&#x3092;&#x8868;&#x3059;&#x77E2;&#x5370;</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E5%9B%B3%E3%81%AE%E8%A1%A8%E8%A8%98%E6%B3%95">&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x6CD5;</h4>
+
+<p>&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x3092;&#x4EE5;&#x4E0B;&#x306E;&#x5F62;&#x5F0F;&#x306E;PlantUML&#x8868;&#x8A18;&#x3067;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+<pre data-role="codeBlock" data-info="text" class="language-text">&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x3092;&#x69CB;&#x6210;&#x3059;&#x308B;UML&#x306E;&#x8981;&#x7D20;&#x306E;&#x4E00;&#x89A7;
+rectangle &#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x540D;&#x79F0; {
+  package &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x540D; {
+    &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x306E;&#x4E00;&#x89A7;
+  }
+  ...
+}
+&#x8981;&#x7D20;&#x9593;&#x306E;&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;
+</pre><p>&#x4F8B;&#x3068;&#x3057;&#x3066;, &#x5229;&#x7528;&#x8005;&#x304C;&#x7AEF;&#x672B;&#x307E;&#x305F;&#x306F;&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304B;&#x3089;&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5143;&#x306B;&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3057;, &#x7AEF;&#x672B;&#x306B;&#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;, &#x307E;&#x3084;&#x306F;, &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x7D50;&#x679C;&#x3092;&#x8A18;&#x9332;&#x3059;&#x308B;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306B;&#x5BFE;&#x3059;&#x308B;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x56F3;&#x306E;&#x8A18;&#x8F09;&#x4F8B;&#x3092;&#x4EE5;&#x4E0B;&#x306B;&#x793A;&#x3059;&#x3002;</p>
+<pre data-role="codeBlock" data-info="text" class="language-text">/&apos; &#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x3092;&#x69CB;&#x6210;&#x3059;&#x308B;UML&#x306E;&#x8981;&#x7D20;&#x306E;&#x4E00;&#x89A7;
+&apos;/
+actor &#x5229;&#x7528;&#x8005;
+actor &#x7AEF;&#x672B;
+database &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;
+file &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;
+package &#x7D50;&#x679C;&#x7B97;&#x51FA;&#x51E6;&#x7406;&#x90E8;
+package &#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8;
+package &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x51E6;&#x7406;&#x90E8;
+package &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x51E6;&#x7406;&#x90E8;
+
+/&apos; &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x5B9A;&#x7FA9;
+&apos;/
+rectangle &#x672C;&#x30B7;&#x30B9;&#x30C6;&#x30E0; {
+  package &#x7D50;&#x679C;&#x7B97;&#x51FA;&#x51E6;&#x7406;&#x90E8; {
+    usecase &#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;
+    usecase &#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;
+  }
+  package &#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8; {
+    usecase &#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;
+  }
+  package &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x51E6;&#x7406;&#x90E8; {
+    usecase &#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B;
+  }
+  package &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x51E6;&#x7406;&#x90E8; {
+    usecase &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;
+  }
+}
+/&apos; &#x8981;&#x7D20;&#x9593;&#x306E;&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;
+&apos;/
+&#x5229;&#x7528;&#x8005; -- &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;
+&#x5229;&#x7528;&#x8005; -- &#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;
+&#x7AEF;&#x672B; -- &#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;
+&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B; --&gt; &#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;
+&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B; --&gt; &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;
+&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B; --&gt; &#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;
+&#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B; --&gt; &#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;
+&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B; --&gt; &#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;
+&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B; -- &#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;
+</pre><p>&#x4E0A;&#x8A18;&#x3092;&#x56F3;&#x793A;&#x3059;&#x308B;&#x3068;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308B;&#x3002;</p>
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="641px" preserveAspectRatio="none" style="width:1246px;height:641px;background:#FFFFFF;" version="1.1" viewBox="0 0 1246 641" width="1246px" zoomAndPan="magnify"><defs><filter height="300%" id="fsq6vsloz1ex7" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[396eca23accece7acb7320aa55a85d0a]
+cluster 本システム--><rect fill="#FFFFFF" filter="url(#fsq6vsloz1ex7)" height="567.5" style="stroke:#000000;stroke-width:1.5;" width="1055" x="126" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="70" x="618.5" y="25.2399">&#x672C;&#x30B7;&#x30B9;&#x30C6;&#x30E0;</text><!--MD5=[d7b39b4e34d1fdc5919a870c44870808]
+cluster 結果出力処理部--><polygon fill="#FFFFFF" filter="url(#fsq6vsloz1ex7)" points="444,54,548,54,555,80.2719,941,80.2719,941,426.5,444,426.5,444,54" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="444" x2="555" y1="80.2719" y2="80.2719"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="98" x="448" y="72.2399">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;</text><!--MD5=[cbf8f9282c7e7f86aa9d26351beb5d93]
+cluster 端末処理部--><polygon fill="#FFFFFF" filter="url(#fsq6vsloz1ex7)" points="965,206.5,1041,206.5,1048,232.7719,1157,232.7719,1157,298.5,965,298.5,965,206.5" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="965" x2="1048" y1="232.7719" y2="232.7719"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="70" x="969" y="224.7399">&#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8;</text><!--MD5=[22cde72220a289365497f09880313874]
+cluster データベース処理部--><polygon fill="#FFFFFF" filter="url(#fsq6vsloz1ex7)" points="150,199,282,199,289,225.2719,420,225.2719,420,306,150,306,150,199" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="150" x2="289" y1="225.2719" y2="225.2719"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="126" x="154" y="217.2399">&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x51E6;&#x7406;&#x90E8;</text><!--MD5=[05350c6a7be2faab9d224e58a0128a0f]
+cluster 入力ファイル処理部--><polygon fill="#FFFFFF" filter="url(#fsq6vsloz1ex7)" points="823,450.5,955,450.5,962,476.7719,1057,476.7719,1057,550.5,823,550.5,823,450.5" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="823" x2="962" y1="476.7719" y2="476.7719"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="126" x="827" y="468.7399">&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x51E6;&#x7406;&#x90E8;</text><ellipse cx="829.1235" cy="119.0247" fill="#FEFECE" filter="url(#fsq6vsloz1ex7)" rx="95.6235" ry="21.5247" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="756.1235" y="124.3947">&#x7D50;&#x679C;&#x3092;&#x7AEF;&#x672B;&#x306B;&#x51FA;&#x529B;&#x3059;&#x308B;</text><ellipse cx="578.9789" cy="119.1958" fill="#FEFECE" filter="url(#fsq6vsloz1ex7)" rx="118.9789" ry="26.1958" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="196" x="477.9789" y="124.5657">&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x51FA;&#x529B;&#x3059;&#x308B;</text><ellipse cx="840.0433" cy="390.9087" fill="#FEFECE" filter="url(#fsq6vsloz1ex7)" rx="85.0433" ry="19.4087" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="781.0433" y="396.2786">&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;</text><ellipse cx="829.1629" cy="263.9326" fill="#FEFECE" filter="url(#fsq6vsloz1ex7)" rx="80.1629" ry="18.4326" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="777.1629" y="269.3025">&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;</text><ellipse cx="1061.1629" cy="263.9326" fill="#FEFECE" filter="url(#fsq6vsloz1ex7)" rx="80.1629" ry="18.4326" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="1009.1629" y="269.3025">&#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;</text><ellipse cx="284.9789" cy="264.1958" fill="#FEFECE" filter="url(#fsq6vsloz1ex7)" rx="118.9789" ry="26.1958" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="196" x="183.9789" y="269.5657">&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B;</text><ellipse cx="940.235" cy="512.147" fill="#FEFECE" filter="url(#fsq6vsloz1ex7)" rx="101.235" ry="22.647" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="860.235" y="517.517">&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;</text><!--MD5=[b1030581ff8764b539e95d89ffd58376]
+entity 利用者--><ellipse cx="1218" cy="231" fill="#FEFECE" filter="url(#fsq6vsloz1ex7)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M1218,239 L1218,266 M1205,247 L1231,247 M1218,266 L1205,281 M1218,266 L1231,281 " fill="none" filter="url(#fsq6vsloz1ex7)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="1197" y="302.7399">&#x5229;&#x7528;&#x8005;</text><!--MD5=[d8ec4f216d8d78bcbf3b353f393a8206]
+entity 端末--><ellipse cx="1212" cy="86" fill="#FEFECE" filter="url(#fsq6vsloz1ex7)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M1212,94 L1212,121 M1199,102 L1225,102 M1212,121 L1199,136 M1212,121 L1225,136 " fill="none" filter="url(#fsq6vsloz1ex7)" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="1198" y="157.7399">&#x7AEF;&#x672B;</text><!--MD5=[9dde73a266ab2b929168dd578303b015]
+entity データベース--><path d="M6,376.5 C6,366.5 58,366.5 58,366.5 C58,366.5 110,366.5 110,376.5 L110,405.7719 C110,415.7719 58,415.7719 58,415.7719 C58,415.7719 6,415.7719 6,405.7719 L6,376.5 " fill="#FEFECE" filter="url(#fsq6vsloz1ex7)" style="stroke:#000000;stroke-width:1.5;"/><path d="M6,376.5 C6,386.5 58,386.5 58,386.5 C58,386.5 110,386.5 110,376.5 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84" x="16" y="406.7399">&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;</text><!--MD5=[201c4d3352aa4ed1769b322fb8f5211d]
+entity 入力ファイル--><polygon fill="#FEFECE" filter="url(#fsq6vsloz1ex7)" points="888,594.5,888,634.7719,992,634.7719,992,604.5,982,594.5,888,594.5" style="stroke:#000000;stroke-width:1.5;"/><path d="M982,594.5 L982,604.5 L992,604.5 " fill="#FEFECE" style="stroke:#000000;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="84" x="898" y="620.7399">&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;</text><!--MD5=[56d3b194682e32562a8959f967caf592]
+link 利用者 to 入力ファイルを指定する--><path d="M1196.65,283.89 C1145.66,329.01 1017.11,442.76 963.77,489.97 " fill="none" id="&#x5229;&#x7528;&#x8005;-&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[21dc8eecb98df302eabcbf9e529516ee]
+link 利用者 to 入力データを得る--><path d="M1196.76,285.96 C1185.71,295.79 1171.51,306.88 1157,314 C1079.13,352.19 980.89,371.9 914.58,381.56 " fill="none" id="&#x5229;&#x7528;&#x8005;-&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[c8915b21d9874dadc3e461cc0043b545]
+link 端末 to 結果を表示する--><path d="M1197.25,133.97 C1169.49,160.26 1109.59,216.99 1079.31,245.66 " fill="none" id="&#x7AEF;&#x672B;-&#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e36054fcfe90ac806d40b648e0dcb9c2]
+link 結果を端末に出力する to 結果を算出する--><path d="M829,140.79 C829,167.23 829,212.71 829,240.11 " fill="none" id="&#x7D50;&#x679C;&#x3092;&#x7AEF;&#x672B;&#x306B;&#x51FA;&#x529B;&#x3059;&#x308B;-to-&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="829,245.34,833,236.34,829,240.34,825,236.34,829,245.34" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[145007b6637e8d3330eb8cf17b3239e5]
+link 結果をデータベースに出力する to 結果を算出する--><path d="M620,143.45 C669.15,171.57 750.55,218.13 795.9,244.07 " fill="none" id="&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x51FA;&#x529B;&#x3059;&#x308B;-to-&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="800.44,246.66,794.616,238.7177,796.1005,244.1762,790.642,245.6608,800.44,246.66" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[38915b639837aa0465d8ab345e507392]
+link 結果を算出する to 入力データを得る--><path d="M830.55,282.64 C832.48,304.51 835.76,341.85 837.91,366.23 " fill="none" id="&#x7D50;&#x679C;&#x3092;&#x7B97;&#x51FA;&#x3059;&#x308B;-to-&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="838.35,371.22,841.5622,361.9097,837.9206,366.2385,833.5918,362.5968,838.35,371.22" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[86c38ec71a9c8b8e9866c0c260e94bdd]
+link 入力データを得る to 入力ファイルを指定する--><path d="M855.41,410.33 C872.32,430.46 899.6,462.93 918.59,485.53 " fill="none" id="&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;-to-&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="922.04,489.63,919.3166,480.1652,918.825,485.8006,913.1896,485.3091,922.04,489.63" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[b77a0f8aff216c4399fb2ab4db7f1440]
+link 入力ファイルを指定する to 入力ファイル--><path d="M940,534.81 C940,550.78 940,572.48 940,589.04 " fill="none" id="&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;-to-&#x5165;&#x529B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="940,594.45,944,585.45,940,589.45,936,585.45,940,594.45" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[bf944e11235ec79d08442426ae5204fb]
+link 結果を端末に出力する to 結果を表示する--><path d="M860.77,139.58 C905.28,167.02 985.7,216.58 1029.86,243.81 " fill="none" id="&#x7D50;&#x679C;&#x3092;&#x7AEF;&#x672B;&#x306B;&#x51FA;&#x529B;&#x3059;&#x308B;-to-&#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1034.28,246.53,1028.7236,238.3982,1030.0256,243.9031,1024.5207,245.2052,1034.28,246.53" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[dee4c59b67cc904349378d67820b3e36]
+link 結果をデータベースに出力する to 結果をデータベースに記録する--><path d="M531.76,142.98 C478.4,168.93 391.83,211.04 336.69,237.86 " fill="none" id="&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x51FA;&#x529B;&#x3059;&#x308B;-to-&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="332.12,240.08,341.9632,239.7459,336.6175,237.8955,338.468,232.5498,332.12,240.08" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[8eb26a88ac0f0c8658f0817f99b1d9a6]
+link 結果をデータベースに記録する to データベース--><path d="M242.57,288.36 C202.15,310.62 141.6,343.96 100.99,366.33 " fill="none" id="&#x7D50;&#x679C;&#x3092;&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B;-&#x30C7;&#x30FC;&#x30BF;&#x30D9;&#x30FC;&#x30B9;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[46c5ebfcfc27270c3a38dd3763e959c1]
+@startuml
+/' 開発システムを構成するUMLの要素の一覧
+'/
+actor 利用者
+actor 端末
+database データベース
+file 入力ファイル
+package 結果出力処理部
+package 端末処理部
+package データベース処理部
+package 入力ファイル処理部
+
+/' パッケージの定義
+'/
+rectangle 本システム {
+  package 結果出力処理部 {
+    usecase 結果を端末に出力する
+    usecase 結果をデータベースに出力する
+    usecase 入力データを得る
+    usecase 結果を算出する
+  }
+  package 端末処理部 {
+    usecase 結果を表示する
+  }
+  package データベース処理部 {
+    usecase 結果をデータベースに記録する
+  }
+  package 入力ファイル処理部 {
+    usecase 入力ファイルを指定する
+  }
+}
+/' 要素間の依存関係
+'/
+利用者 - - 入力ファイルを指定する
+利用者 - - 入力データを得る
+端末 - - 結果を表示する
+結果を端末に出力する - -> 結果を算出する
+結果をデータベースに出力する - -> 結果を算出する
+結果を算出する - -> 入力データを得る
+入力データを得る - -> 入力ファイルを指定する
+入力ファイルを指定する - -> 入力ファイル
+結果を端末に出力する - -> 結果を表示する
+結果をデータベースに出力する - -> 結果をデータベースに記録する
+結果をデータベースに記録する - - データベース
+@enduml
+
+@startuml
+actor 利用者
+actor 端末
+database データベース
+file 入力ファイル
+package 結果出力処理部
+package 端末処理部
+package データベース処理部
+package 入力ファイル処理部
+
+rectangle 本システム {
+  package 結果出力処理部 {
+    usecase 結果を端末に出力する
+    usecase 結果をデータベースに出力する
+    usecase 入力データを得る
+    usecase 結果を算出する
+  }
+  package 端末処理部 {
+    usecase 結果を表示する
+  }
+  package データベース処理部 {
+    usecase 結果をデータベースに記録する
+  }
+  package 入力ファイル処理部 {
+    usecase 入力ファイルを指定する
+  }
+}
+利用者 - - 入力ファイルを指定する
+利用者 - - 入力データを得る
+端末 - - 結果を表示する
+結果を端末に出力する - -> 結果を算出する
+結果をデータベースに出力する - -> 結果を算出する
+結果を算出する - -> 入力データを得る
+入力データを得る - -> 入力ファイルを指定する
+入力ファイルを指定する - -> 入力ファイル
+結果を端末に出力する - -> 結果を表示する
+結果をデータベースに出力する - -> 結果をデータベースに記録する
+結果をデータベースに記録する - - データベース
+@enduml
+
+PlantUML version 1.2021.12(Wed Oct 06 01:01:58 JST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: ja
+Country: JP
+--></g></svg></p><h3 class="mume-header" id="%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3">&#x30AF;&#x30E9;&#x30B9;&#x56F3;</h3>
+
+<p>&#x672C;&#x7BC0;&#x3067;&#x306F;, &#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x65B9;&#x6CD5;&#x306B;&#x3064;&#x3044;&#x3066;&#x8FF0;&#x3079;&#x308B;&#x3002;</p>
+<h4 class="mume-header" id="%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3%E3%81%A8%E3%81%AF">&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x3068;&#x306F;</h4>
+
+<p>&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306F;, &#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x306E;&#x30ED;&#x30FC;&#x30C9;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x5185;&#x306E;&#x69CB;&#x6210;&#x3092;&#x8868;&#x3059;&#x3002;</p>
+<p>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x6307;&#x5411;&#x8A00;&#x8A9E;&#x3092;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;, &#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x3092;&#x30ED;&#x30FC;&#x30C9;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x69CB;&#x6210;&#x3059;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x7FA4;&#x3068;&#x30AF;&#x30E9;&#x30B9;&#x9593;&#x306E;&#x95A2;&#x4FC2;&#x3092;&#x56F3;&#x793A;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x7528;&#x3044;&#x308B;&#x3002;</p>
+<p>C&#x8A00;&#x8A9E;&#x306A;&#x3069;&#x306E;&#x975E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x6307;&#x5411;&#x8A00;&#x8A9E;&#x3092;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;, &#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x3092;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x5358;&#x4F4D;&#x3067;&#x4F5C;&#x6210;&#x3057;, &#x5404;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x5185;&#x306E;&#x5927;&#x57DF;&#x5909;&#x6570;&#x3092;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x30E1;&#x30F3;&#x30D0;&#x5909;&#x6570;, &#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x5185;&#x306E;&#x5916;&#x90E8;&#x30EA;&#x30F3;&#x30B1;&#x30FC;&#x30B8;&#x95A2;&#x6570;&#x3092;&#x30A4;&#x30F3;&#x30BF;&#x30FC;&#x30D5;&#x30A7;&#x30FC;&#x30B9;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;&#x898B;&#x306A;&#x3057;&#x3066;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+<h4 class="mume-header" id="%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3%E3%81%AB%E8%A8%98%E8%BC%89%E3%81%99%E3%82%8B%E5%86%85%E5%AE%B9">&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306B;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x5185;&#x5BB9;</h4>
+
+<p>&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x4EE5;&#x4E0B;&#x3092;&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x4E2D;&#x306B;&#x8A18;&#x8F09;&#x3059;&#x308B;</p>
+<ol>
+<li>&#x4ED6;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3068;&#x306E;&#x62E1;&#x5F35;&#x95A2;&#x4FC2;(&#x7D99;&#x627F;&#x95A2;&#x4FC2;)&#x56F3;</li>
+<li>&#x4ED6;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x5834;&#x5408;&#x306F;, &#x4ED6;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3068;&#x306E;&#x6A5F;&#x80FD;&#x306E;&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;&#x3092;&#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x3088;&#x3063;&#x3066;&#x8868;&#x8A18;&#x3059;&#x308B;</li>
+<li>&#x4ED6;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x306E;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3068;&#x3057;&#x3066;&#x306E;&#x5F79;&#x5272;&#x3092;&#x679C;&#x305F;&#x3059;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x5834;&#x5408;&#x306F;, &#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x5BFE;&#x8C61;&#x3068;&#x306A;&#x308B;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x96C6;&#x7D04;&#x306B;&#x3088;&#x3063;&#x3066;&#x8868;&#x73FE;&#x3059;&#x308B;</li>
+<li>&#x4ED6;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x95A2;&#x9023;&#x4ED8;&#x3051;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x5C0E;&#x5165;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;, &#x5404;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x9593;&#x306E;&#x95A2;&#x9023;&#x4ED8;&#x3051;&#x3092;&#x95A2;&#x9023;&#x3068;&#x3057;&#x3066;&#x8868;&#x8A18;&#x3059;&#x308B;</li>
+<li>&#x4ED6;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3068;&#x96C6;&#x7D04;&#x3084;&#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;&#x95A2;&#x4FC2;&#x3092;&#x6301;&#x3064;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x5834;&#x5408;&#x306F;, &#x96C6;&#x7D04;&#x3084;&#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x95A2;&#x308F;&#x308B;&#x30E1;&#x30F3;&#x30D0;&#x5909;&#x6570;&#x3092;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x30C9;&#x3068;&#x3057;&#x3066;&#x8868;&#x8A18;&#x3059;&#x308B;&#x3002;</li>
+<li>&#x4ED6;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x96C6;&#x7D04;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;, &#x96C6;&#x7D04;&#x306E;&#x591A;&#x91CD;&#x5EA6;&#x3092;&#x660E;&#x8A18;&#x3059;&#x308B;</li>
+</ol>
+<h5 class="mume-header" id="%E9%9B%86%E7%B4%84%E3%82%84%E3%82%B3%E3%83%B3%E3%83%9D%E3%82%B8%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AB%E9%96%A2%E3%82%8F%E3%82%8B%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89%E3%82%92%E6%98%8E%E8%A8%98%E3%81%99%E3%82%8B%E7%90%86%E7%94%B1">&#x96C6;&#x7D04;&#x3084;&#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x95A2;&#x308F;&#x308B;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x30C9;&#x3092;&#x660E;&#x8A18;&#x3059;&#x308B;&#x7406;&#x7531;</h5>
+
+<p>UML&#x306E;&#x8868;&#x8A18;&#x6CD5;&#x306E;&#x89B3;&#x70B9;&#x304B;&#x3089;&#x306F;, &#x96C6;&#x7D04;&#x3084;&#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x95A2;&#x308F;&#x308B;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x30C9;&#x306F;&#x95A2;&#x9023;&#x306E;&#x30ED;&#x30FC;&#x30EB;&#x540D;&#x3092;&#x95A2;&#x9023;&#x4ED8;&#x3051;&#x3089;&#x308C;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x5074;&#x306B;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x65B9;&#x304C;, &#x3088;&#x308A;&#x95A2;&#x9023;&#x306B;&#x95A2;&#x4FC2;&#x3059;&#x308B;&#x8981;&#x7D20;&#x3092;&#x5F37;&#x8ABF;&#x3057;&#x3066;&#x8868;&#x73FE;&#x53EF;&#x80FD;&#x3067;&#x3042;&#x308B;&#x3053;&#x3068;&#x304B;&#x3089;&#x671B;&#x307E;&#x3057;&#x3044;&#x3002;</p>
+<p>&#x3057;&#x304B;&#x3057;&#x306A;&#x304C;&#x3089;, PlantUML&#x3067;&#x306F;, &#x95A2;&#x9023;&#x306E;&#x30ED;&#x30FC;&#x30EB;&#x540D;&#x3092;&#x95A2;&#x9023;&#x4ED8;&#x3051;&#x3089;&#x308C;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x5074;&#x306B;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x96E3;&#x3057;&#x3044;&#x3053;&#x3068;&#x304B;&#x3089;&#x96C6;&#x7D04;&#x3084;&#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x95A2;&#x308F;&#x308B;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x30C9;&#x3092;&#x95A2;&#x9023;&#x4ED8;&#x3051;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x5074;&#x306E;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x30C9;&#x3068;&#x3057;&#x3066;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x65B9;&#x91DD;&#x3068;&#x3057;&#x305F;&#x3002;</p>
+<h4 class="mume-header" id="%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3%E3%81%AB%E8%A8%98%E8%BC%89%E3%81%97%E3%81%AA%E3%81%84%E5%86%85%E5%AE%B9">&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306B;&#x8A18;&#x8F09;&#x3057;&#x306A;&#x3044;&#x5185;&#x5BB9;</h4>
+
+<p>&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x4EE5;&#x4E0B;&#x3092;&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x4E2D;&#x306B;&#x306F;&#x8A18;&#x8F09;&#x3057;&#x306A;&#x3044;&#x3002;</p>
+<ol>
+<li>&#x30D7;&#x30E9;&#x30A4;&#x30D9;&#x30FC;&#x30C8;&#x30E1;&#x30F3;&#x30D0;&#x5909;&#x6570;</li>
+<li>&#x30D7;&#x30E9;&#x30A4;&#x30D9;&#x30FC;&#x30C8;&#x30E1;&#x30F3;&#x30D0;&#x30E1;&#x30BD;&#x30C3;&#x30C9;</li>
+<li>&#x4ED6;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3068;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;&#x3084;&#x96C6;&#x7D04;&#x95A2;&#x4FC2;&#x306B;&#x95A2;&#x4FC2;&#x3057;&#x306A;&#x3044;&#x30D7;&#x30ED;&#x30C6;&#x30AF;&#x30C6;&#x30C3;&#x30C9;&#x30E1;&#x30F3;&#x30D0;&#x5909;&#x6570;</li>
+<li>&#x30D7;&#x30ED;&#x30C6;&#x30AF;&#x30C6;&#x30C3;&#x30C9;&#x30E1;&#x30F3;&#x30D0;&#x30E1;&#x30BD;&#x30C3;&#x30C9;</li>
+</ol>
+<h4 class="mume-header" id="%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A6%81%E7%B4%A0">&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306E;&#x8981;&#x7D20;</h4>
+
+<p>&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306E;&#x8981;&#x7D20;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x901A;&#x308A;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8981;&#x7D20;</th>
+<th>PlantUML&#x3067;&#x306E;&#x8868;&#x8A18;</th>
+<th>&#x610F;&#x5473;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x30AF;&#x30E9;&#x30B9;</td>
+<td>class &#x30AF;&#x30E9;&#x30B9;&#x540D;</td>
+<td>&#x30ED;&#x30FC;&#x30C9;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306B;&#x3088;&#x3063;&#x3066;&#x751F;&#x6210;&#x3055;&#x308C;&#x308B;&#x30ED;&#x30FC;&#x30C9;&#x30A4;&#x30E1;&#x30FC;&#x30B8;&#x3092;&#x69CB;&#x6210;&#x3059;&#x308B;&#x5404;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x8868;&#x3059;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x62BD;&#x8C61;&#x30AF;&#x30E9;&#x30B9;</td>
+<td>abstract class &#x30AF;&#x30E9;&#x30B9;&#x540D;</td>
+<td>&#x4ED6;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x89AA;&#x30AF;&#x30E9;&#x30B9;&#x3068;&#x306A;&#x308B;&#x62BD;&#x8C61;&#x30AF;&#x30E9;&#x30B9;(&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;&#x751F;&#x6210;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x4E0D;&#x53EF;&#x80FD;&#x306A;&#x30AF;&#x30E9;&#x30B9;)&#x3092;&#x8868;&#x3059;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x30A4;&#x30F3;&#x30BF;&#x30FC;&#x30D5;&#x30A7;&#x30FC;&#x30B9;</td>
+<td>interface &#x30A4;&#x30F3;&#x30BF;&#x30FC;&#x30D5;&#x30A7;&#x30FC;&#x30B9;&#x540D;</td>
+<td>&#x30AF;&#x30E9;&#x30B9;&#x304C;&#x5B9F;&#x88C5;&#x3057;&#x306A;&#x3051;&#x308C;&#x3070;&#x306A;&#x3089;&#x306A;&#x3044;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x7FA4;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x8868;&#x3059;&#x3002;&#x30A4;&#x30F3;&#x30BF;&#x30FC;&#x30D5;&#x30A7;&#x30FC;&#x30B9;&#x306F;, &#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x307F;&#x3092;&#x6301;&#x3061;, &#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x30C9;&#x3092;&#x6301;&#x305F;&#x306A;&#x3044;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;</td>
+<td>package &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x540D;</td>
+<td>UML&#x306E;&#x8981;&#x7D20;&#x306E;&#x30B0;&#x30EB;&#x30FC;&#x30D7;&#x3092;&#x8868;&#x3059;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x7D99;&#x627F;(&#x62E1;&#x5F35;, Extention)</td>
+<td>&#x89AA;&#x30AF;&#x30E9;&#x30B9; <code>&lt;|--</code> &#x5B50;&#x30AF;&#x30E9;&#x30B9;</td>
+<td><code>&#x89AA;&#x30AF;&#x30E9;&#x30B9;</code>&#x3092;&#x7D99;&#x627F;&#x3057;&#x3066;<code>&#x5B50;&#x30AF;&#x30E9;&#x30B9;</code>&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x3002;&#x89AA;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x5DE6;&#x306B;, &#x5B50;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x53F3;&#x306B;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;(Composition)</td>
+<td>&#x5168;&#x4F53;&#x5074;&#x30AF;&#x30E9;&#x30B9; <code>*--</code> &#x90E8;&#x5206;&#x5074;&#x30AF;&#x30E9;&#x30B9;</td>
+<td>&#x5168;&#x4F53;&#x3068;&#x90E8;&#x5206;&#x306E;&#x95A2;&#x4FC2;&#x3092;&#x8868;&#x3059;&#x3002;&#x5168;&#x4F53;&#x5074;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x5DE6;&#x306B;, &#x90E8;&#x5206;&#x5074;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x53F3;&#x306B;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x5168;&#x4F53;&#x5074;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x6A5F;&#x80FD;&#x3092;, &#x90E8;&#x5206;&#x5074;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x5229;&#x7528;&#x3057;&#x3066;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x3053;&#x3068;&#x3092;&#x793A;&#x3059;&#x305F;&#x3081;&#x306B;&#x7528;&#x3044;&#x308B;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x96C6;&#x7D04;(Composition)</td>
+<td>&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x683C;&#x7D0D;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9; <code>&quot;&#x591A;&#x91CD;&#x5EA6;&quot; o-- &quot;&#x591A;&#x91CD;&#x5EA6;&quot;</code> &#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x8981;&#x7D20;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;</td>
+<td>&#x72EC;&#x7ACB;&#x3057;&#x3066;&#x5B58;&#x5728;&#x3067;&#x304D;&#x308B;&#x4F55;&#x304B;&#x306E;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x683C;&#x7D0D;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x3068;&#x305D;&#x306E;&#x8981;&#x7D20;&#x3068;&#x306A;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x8868;&#x73FE;&#x3059;&#x308B;&#x3002;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x683C;&#x7D0D;&#x3059;&#x308B;&#x5074;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x5DE6;&#x306B;, &#x683C;&#x7D0D;&#x3055;&#x308C;&#x308B;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x8981;&#x7D20;&#x3092;&#x8868;&#x3059;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x53F3;&#x306B;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x95A2;&#x9023;(Association)</td>
+<td>&#x30AF;&#x30E9;&#x30B9;&#x540D;1 <code>--</code> &#x30AF;&#x30E9;&#x30B9;&#x540D;2</td>
+<td><code>&#x30AF;&#x30E9;&#x30B9;1</code>&#x3068;<code>&#x30AF;&#x30E9;&#x30B9;2</code>&#x304C;&#x4E92;&#x3044;&#x306B;&#x95A2;&#x9023;&#x3065;&#x3051;&#x3089;&#x308C;&#x308B;&#x3053;&#x3068;&#x3092;&#x8868;&#x3059;&#x3002;&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x7D99;&#x627F;(&#x62E1;&#x5F35;), &#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;, &#x96C6;&#x7D04;&#x4EE5;&#x5916;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x9593;&#x306E;&#x95A2;&#x9023;&#x3092;<code>&#x95A2;&#x9023;</code>&#x3092;&#x7528;&#x3044;&#x3066;&#x30AF;&#x30E9;&#x30B9;&#x9593;&#x3092;&#x5B9F;&#x7DDA;(<code>--</code>)&#x3067;&#x7D50;&#x3076;&#x3053;&#x3068;&#x3067;&#x8868;&#x73FE;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x95A2;&#x9023;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;</td>
+<td>(&#x95A2;&#x9023;&#x4ED8;&#x3051;&#x3089;&#x308C;&#x308B;&#x30AF;&#x30E9;&#x30B9;1, &#x95A2;&#x9023;&#x4ED8;&#x3051;&#x3089;&#x308C;&#x308B;&#x30AF;&#x30E9;&#x30B9;2) .. 2&#x3064;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x95A2;&#x9023;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;</td>
+<td>2&#x3064;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x95A2;&#x9023;&#x4ED8;&#x3051;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x8868;&#x8A18;&#x3059;&#x308B;&#x3002;&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x95A2;&#x9023;&#x3068;2&#x3064;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x95A2;&#x9023;&#x4ED8;&#x3051;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x7834;&#x7DDA;(<code>..</code>)&#x3067;&#x7D50;&#x3093;&#x3067;&#x8868;&#x73FE;&#x3059;&#x308B;&#x3002;PlantUML&#x306E;&#x8868;&#x8A18;&#x30EB;&#x30FC;&#x30EB;&#x4E0A;, 2&#x3064;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x95A2;&#x9023;&#x3092;&#x8A18;&#x8F09;&#x3057;&#x305F;&#x5F8C;&#x3067;, &#x305D;&#x306E;&#x95A2;&#x9023;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x3067;&#x306F;, &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x7528;&#x3044;&#x3066;&#x4EE5;&#x4E0B;&#x3092;&#x8868;&#x8A18;&#x3059;&#x308B;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8868;&#x8A18;&#x3059;&#x308B;&#x5BFE;&#x8C61;</th>
+<th>&#x8AAC;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x306E;&#x30ED;&#x30FC;&#x30C9;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;</td>
+<td>&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3092;&#x69CB;&#x6210;&#x3059;&#x308B;&#x5404;&#x30ED;&#x30FC;&#x30C9;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;, &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x4E00;&#x3064;&#x3068;&#x3057;&#x3066;&#x8868;&#x8A18;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x30AF;&#x30E9;&#x30B9;&#x9593;&#x306E;&#x8AD6;&#x7406;&#x69CB;&#x6210;</td>
+<td>&#x30AF;&#x30E9;&#x30B9;&#x7FA4;&#x306B;&#x5BFE;&#x3059;&#x308B;&#x8AD6;&#x7406;&#x69CB;&#x6210;&#x3092;&#x8868;&#x8A18;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x7528;&#x3044;&#x308B;&#x3002;&#x30ED;&#x30FC;&#x30C9;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x4E2D;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x7FA4;&#x306E;&#x8AD6;&#x7406;&#x69CB;&#x6210;&#x3092;&#x305D;&#x308C;&#x3089;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x7FA4;&#x3092;&#x5305;&#x542B;&#x3057;&#x305F;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3068;&#x3057;&#x3066;&#x8868;&#x8A18;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h5 class="mume-header" id="%E9%96%A2%E9%80%A3%E3%81%AE%E5%A4%9A%E9%87%8D%E5%BA%A6%E3%81%AE%E8%A1%A8%E8%A8%98%E6%96%B9%E6%B3%95">&#x95A2;&#x9023;&#x306E;&#x591A;&#x91CD;&#x5EA6;&#x306E;&#x8868;&#x8A18;&#x65B9;&#x6CD5;</h5>
+
+<p>&#x96C6;&#x7D04;&#x306E;&#x5834;&#x5408;&#x306F;, &#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x53EF;&#x80FD;&#x306A;&#x8981;&#x7D20;&#x306E;&#x6570;&#x3092;&#x591A;&#x91CD;&#x5EA6;&#x306B;&#x3088;&#x3063;&#x3066;&#x660E;&#x8A18;&#x3059;&#x308B;&#x3002;&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, markdown&#x306E;&#x8868;&#x8A18;&#x3068;&#x306E;&#x885D;&#x7A81;&#x3092;&#x907F;&#x3051;&#x308B;&#x305F;&#x3081;, 0&#x500B;&#x4EE5;&#x4E0A;&#x3092;&#x8868;&#x3059;&#x591A;&#x91CD;&#x5EA6;&#x3092;<code>&quot;0..n&quot;</code>&#x3068;&#x8868;&#x8A18;&#x3057;, <code>&quot;*&quot;</code>&#x306F;&#x4F7F;&#x7528;&#x3057;&#x306A;&#x3044;&#x3002;&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x591A;&#x91CD;&#x5EA6;&#x3092;&#x7701;&#x7565;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;, 1&#x5BFE;1&#x306B;&#x95A2;&#x9023;&#x3065;&#x3051;&#x3089;&#x308C;&#x308B;&#x3053;&#x3068;&#x3092;&#x793A;&#x3059;&#x3002;&#x96C6;&#x7D04;&#x4EE5;&#x5916;&#x306E;&#x95A2;&#x9023;&#x306B;&#x3064;&#x3044;&#x3066;, 2&#x3064;&#x4EE5;&#x4E0A;&#x306E;&#x8981;&#x7D20;&#x304C;&#x95A2;&#x9023;&#x3065;&#x3051;&#x3089;&#x308C;&#x308B;&#x5834;&#x5408;&#x306F;, &#x591A;&#x91CD;&#x5EA6;&#x3092;&#x660E;&#x8A18;&#x3059;&#x308B;&#x3002;</p>
+<h4 class="mume-header" id="%E3%82%AF%E3%83%A9%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A1%A8%E8%A8%98%E6%B3%95">&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x6CD5;</h4>
+
+<p>&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x3092;&#x4EE5;&#x4E0B;&#x306E;&#x5F62;&#x5F0F;&#x306E;PlantUML&#x8868;&#x8A18;&#x3067;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+<pre data-role="codeBlock" data-info="text" class="language-text">package &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x540D; {
+  &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306B;&#x542B;&#x307E;&#x308C;&#x308B;&#x30AF;&#x30E9;&#x30B9;{
+    &#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;&#x3084;&#x96C6;&#x7D04;&#x306B;&#x95A2;&#x4FC2;&#x3059;&#x308B;&#x30D5;&#x30A3;&#x30FC;&#x30EB;&#x30C9;(&#x30E1;&#x30F3;&#x30D0;&#x5909;&#x6570;)
+  &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x7D99;&#x627F;&#x306E;&#x4E00;&#x89A7;
+  &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x4E00;&#x89A7;
+  &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x96C6;&#x7D04;&#x306E;&#x4E00;&#x89A7;
+  &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x95A2;&#x9023;&#x306E;&#x4E00;&#x89A7;
+  &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x95A2;&#x9023;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x4E00;&#x89A7;
+  }
+  ...
+}
+...
+</pre><p>&#x30AF;&#x30E9;&#x30B9;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x4F8B;&#x3092;&#x4EE5;&#x4E0B;&#x306B;&#x793A;&#x3059;&#x3002;</p>
+<pre data-role="codeBlock" data-info="text" class="language-text">/&apos; &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x4E00;&#x89A7;
+&apos;/
+package &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8; {
+  class &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;{
+    {field} io_data
+    {field} outfp
+  }
+  class &#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;
+  class &#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;
+  abstract class &#x30C7;&#x30FC;&#x30BF;&#x5B9A;&#x7FA9;
+  class &#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;
+  class &#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;
+  class &#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;
+
+/&apos; &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x7D99;&#x627F;&#x306E;&#x4E00;&#x89A7;
+&apos;/
+&#x30C7;&#x30FC;&#x30BF;&#x5B9A;&#x7FA9; &lt;|-- &#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;
+&#x30C7;&#x30FC;&#x30BF;&#x5B9A;&#x7FA9; &lt;|-- &#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;
+/&apos; &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30B8;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x4E00;&#x89A7;
+&apos;/
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406; *- &#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406; *- &#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406; *- &#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8;.sys
+/&apos; &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x96C6;&#x7D04;&#x306E;&#x4E00;&#x89A7;
+&apos;/
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406; &quot;1&quot; o- &quot;0..n&quot; &#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;
+/&apos; &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x95A2;&#x9023;&#x306E;&#x4E00;&#x89A7;
+&apos;/
+&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF; -- &#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;
+/&apos; &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x95A2;&#x9023;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x4E00;&#x89A7;
+&apos;/
+(&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;, &#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;) .. &#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;
+}
+</pre><p>&#x4E0A;&#x8A18;&#x3092;&#x56F3;&#x793A;&#x3059;&#x308B;&#x3068;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308B;&#x3002;<br>
+&#x4ED6;&#x306E;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x5185;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x8868;&#x3059;&#x5834;&#x5408;&#x306F;, <code>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x540D;.&#x30AF;&#x30E9;&#x30B9;&#x540D;</code>&#x3068;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="472px" preserveAspectRatio="none" style="width:796px;height:472px;background:#FFFFFF;" version="1.1" viewBox="0 0 796 472" width="796px" zoomAndPan="magnify"><defs><filter height="300%" id="f1nsibilbiwa3r" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[d7b39b4e34d1fdc5919a870c44870808]
+cluster 結果出力処理部--><polygon fill="#FFFFFF" filter="url(#f1nsibilbiwa3r)" points="16,6.532,120,6.532,127,32.8039,669,32.8039,669,465.532,16,465.532,16,6.532" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="127" y1="32.8039" y2="32.8039"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="98" x="20" y="24.7719">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;</text><!--MD5=[cbf8f9282c7e7f86aa9d26351beb5d93]
+cluster 端末処理部--><polygon fill="#FFFFFF" filter="url(#f1nsibilbiwa3r)" points="693,238.532,769,238.532,776,264.8039,779,264.8039,779,341.532,693,341.532,693,238.532" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="693" x2="776" y1="264.8039" y2="264.8039"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="70" x="697" y="256.7719">&#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8;</text><!--MD5=[4653acd4e4c81634803855addef04db7]
+class 結果出力処理--><rect codeline="4" fill="#FEFECE" filter="url(#f1nsibilbiwa3r)" height="79.8558" id="&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;" style="stroke:#A80036;stroke-width:1.5;" width="104" x="108" y="261.532"/><ellipse cx="123" cy="277.532" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M123.2344,284.2351 C124.3906,284.2351 125.4844,283.7507 126.3125,282.7195 L124.8906,281.2039 C124.5,281.7507 124.0313,282.0632 123.4688,282.0632 C122.2813,282.0632 121.2656,280.9226 121.2656,277.6882 C121.2656,274.532 122.3281,273.3601 123.3594,273.3601 C123.9531,273.3601 124.3281,273.657 124.75,274.157 L126.1719,272.5945 C125.5,271.8445 124.5313,271.2039 123.25,271.2039 C120.8281,271.2039 118.6875,273.1726 118.6875,277.7976 C118.6875,282.4382 120.8281,284.2351 123.2344,284.2351 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="72" x="137" y="282.764">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="109" x2="211" y1="293.532" y2="293.532"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="39" x="114" y="310.2919">io_data</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="114" y="326.2198">outfp</text><line style="stroke:#A80036;stroke-width:1.5;" x1="109" x2="211" y1="333.3877" y2="333.3877"/><!--MD5=[b5e35816c6171aba6e4e8ddd8279d62a]
+class 入力データ処理--><rect codeline="8" fill="#FEFECE" filter="url(#f1nsibilbiwa3r)" height="48" id="&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;" style="stroke:#A80036;stroke-width:1.5;" width="116" x="537" y="277.532"/><ellipse cx="552" cy="293.532" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M552.2344,300.2351 C553.3906,300.2351 554.4844,299.7507 555.3125,298.7195 L553.8906,297.2039 C553.5,297.7507 553.0313,298.0632 552.4688,298.0632 C551.2813,298.0632 550.2656,296.9226 550.2656,293.6882 C550.2656,290.532 551.3281,289.3601 552.3594,289.3601 C552.9531,289.3601 553.3281,289.657 553.75,290.157 L555.1719,288.5945 C554.5,287.8445 553.5313,287.2039 552.25,287.2039 C549.8281,287.2039 547.6875,289.1726 547.6875,293.7976 C547.6875,298.4382 549.8281,300.2351 552.2344,300.2351 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="84" x="566" y="298.764">&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="538" x2="652" y1="309.532" y2="309.532"/><line style="stroke:#A80036;stroke-width:1.5;" x1="538" x2="652" y1="317.532" y2="317.532"/><!--MD5=[32e71019d407b9a8759e35f06a719c78]
+class 出力データ処理--><rect codeline="9" fill="#FEFECE" filter="url(#f1nsibilbiwa3r)" height="48" id="&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;" style="stroke:#A80036;stroke-width:1.5;" width="116" x="386" y="277.532"/><ellipse cx="401" cy="293.532" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M401.2344,300.2351 C402.3906,300.2351 403.4844,299.7507 404.3125,298.7195 L402.8906,297.2039 C402.5,297.7507 402.0313,298.0632 401.4688,298.0632 C400.2813,298.0632 399.2656,296.9226 399.2656,293.6882 C399.2656,290.532 400.3281,289.3601 401.3594,289.3601 C401.9531,289.3601 402.3281,289.657 402.75,290.157 L404.1719,288.5945 C403.5,287.8445 402.5313,287.2039 401.25,287.2039 C398.8281,287.2039 396.6875,289.1726 396.6875,293.7976 C396.6875,298.4382 398.8281,300.2351 401.2344,300.2351 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="84" x="415" y="298.764">&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="387" x2="501" y1="309.532" y2="309.532"/><line style="stroke:#A80036;stroke-width:1.5;" x1="387" x2="501" y1="317.532" y2="317.532"/><!--MD5=[0f137de1db87cccbb9f8ecdf45709ea7]
+class データ定義--><rect codeline="10" fill="#FEFECE" filter="url(#f1nsibilbiwa3r)" height="48" id="&#x30C7;&#x30FC;&#x30BF;&#x5B9A;&#x7FA9;" style="stroke:#A80036;stroke-width:1.5;" width="92" x="73" y="45.532"/><ellipse cx="88" cy="61.532" fill="#A9DCDF" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M87.3281,62.3289 L87.5469,60.9539 C87.7813,59.6414 88.0156,58.2039 88.1875,56.8289 L88.25,56.8289 C88.4688,58.2039 88.6563,59.6414 88.8906,60.9539 L89.1094,62.3289 L87.3281,62.3289 Z M89.9531,67.532 L92.375,67.532 L89.9844,54.907 L86.5156,54.907 L84.125,67.532 L86.5156,67.532 L87.0313,64.2976 L89.4375,64.2976 L89.9531,67.532 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="60" x="102" y="66.764">&#x30C7;&#x30FC;&#x30BF;&#x5B9A;&#x7FA9;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="74" x2="164" y1="77.532" y2="77.532"/><line style="stroke:#A80036;stroke-width:1.5;" x1="74" x2="164" y1="85.532" y2="85.532"/><!--MD5=[f5f0b316df656830b19ccd261882a81b]
+class 入力データ--><rect codeline="11" fill="#FEFECE" filter="url(#f1nsibilbiwa3r)" height="48" id="&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;" style="stroke:#A80036;stroke-width:1.5;" width="92" x="32" y="153.532"/><ellipse cx="47" cy="169.532" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M47.2344,176.2351 C48.3906,176.2351 49.4844,175.7507 50.3125,174.7195 L48.8906,173.2039 C48.5,173.7507 48.0313,174.0632 47.4688,174.0632 C46.2813,174.0632 45.2656,172.9226 45.2656,169.6882 C45.2656,166.532 46.3281,165.3601 47.3594,165.3601 C47.9531,165.3601 48.3281,165.657 48.75,166.157 L50.1719,164.5945 C49.5,163.8445 48.5313,163.2039 47.25,163.2039 C44.8281,163.2039 42.6875,165.1726 42.6875,169.7976 C42.6875,174.4382 44.8281,176.2351 47.2344,176.2351 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="60" x="61" y="174.764">&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="33" x2="123" y1="185.532" y2="185.532"/><line style="stroke:#A80036;stroke-width:1.5;" x1="33" x2="123" y1="193.532" y2="193.532"/><!--MD5=[49949a9773399120b722d9ac822e823c]
+class 出力データ--><rect codeline="12" fill="#FEFECE" filter="url(#f1nsibilbiwa3r)" height="48" id="&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;" style="stroke:#A80036;stroke-width:1.5;" width="92" x="32" y="401.532"/><ellipse cx="47" cy="417.532" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M47.2344,424.2351 C48.3906,424.2351 49.4844,423.7507 50.3125,422.7195 L48.8906,421.2039 C48.5,421.7507 48.0313,422.0632 47.4688,422.0632 C46.2813,422.0632 45.2656,420.9226 45.2656,417.6882 C45.2656,414.532 46.3281,413.3601 47.3594,413.3601 C47.9531,413.3601 48.3281,413.657 48.75,414.157 L50.1719,412.5945 C49.5,411.8445 48.5313,411.2039 47.25,411.2039 C44.8281,411.2039 42.6875,413.1726 42.6875,417.7976 C42.6875,422.4382 44.8281,424.2351 47.2344,424.2351 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="60" x="61" y="422.764">&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="33" x2="123" y1="433.532" y2="433.532"/><line style="stroke:#A80036;stroke-width:1.5;" x1="33" x2="123" y1="441.532" y2="441.532"/><!--MD5=[828e5e27778486702b9e52508f0004ad]
+class 入出力データ--><rect codeline="13" fill="#FEFECE" filter="url(#f1nsibilbiwa3r)" height="48" id="&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;" style="stroke:#A80036;stroke-width:1.5;" width="104" x="247" y="277.532"/><ellipse cx="262" cy="293.532" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M262.2344,300.2351 C263.3906,300.2351 264.4844,299.7507 265.3125,298.7195 L263.8906,297.2039 C263.5,297.7507 263.0313,298.0632 262.4688,298.0632 C261.2813,298.0632 260.2656,296.9226 260.2656,293.6882 C260.2656,290.532 261.3281,289.3601 262.3594,289.3601 C262.9531,289.3601 263.3281,289.657 263.75,290.157 L265.1719,288.5945 C264.5,287.8445 263.5313,287.2039 262.25,287.2039 C259.8281,287.2039 257.6875,289.1726 257.6875,293.7976 C257.6875,298.4382 259.8281,300.2351 262.2344,300.2351 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="72" x="276" y="298.764">&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="248" x2="350" y1="309.532" y2="309.532"/><line style="stroke:#A80036;stroke-width:1.5;" x1="248" x2="350" y1="317.532" y2="317.532"/><ellipse cx="34" cy="301.532" fill="#000000" rx="2" ry="2" style="stroke:none;stroke-width:1.0;"/><!--MD5=[70a09565d99621b041fafd7610794aa0]
+class 端末処理部.sys--><rect fill="#FEFECE" filter="url(#f1nsibilbiwa3r)" height="48" id="&#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8;.sys" style="stroke:#A80036;stroke-width:1.5;" width="50" x="709" y="277.532"/><ellipse cx="724" cy="293.532" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M724.2344,300.2351 C725.3906,300.2351 726.4844,299.7507 727.3125,298.7195 L725.8906,297.2039 C725.5,297.7507 725.0313,298.0632 724.4688,298.0632 C723.2813,298.0632 722.2656,296.9226 722.2656,293.6882 C722.2656,290.532 723.3281,289.3601 724.3594,289.3601 C724.9531,289.3601 725.3281,289.657 725.75,290.157 L727.1719,288.5945 C726.5,287.8445 725.5313,287.2039 724.25,287.2039 C721.8281,287.2039 719.6875,289.1726 719.6875,293.7976 C719.6875,298.4382 721.8281,300.2351 724.2344,300.2351 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="18" x="738" y="298.764">sys</text><line style="stroke:#A80036;stroke-width:1.5;" x1="710" x2="758" y1="309.532" y2="309.532"/><line style="stroke:#A80036;stroke-width:1.5;" x1="710" x2="758" y1="317.532" y2="317.532"/><!--MD5=[efdf6e5913ca2e628f72d7da32302fc7]
+reverse link データ定義 to 入力データ--><path codeline="17" d="M102.73,112.592 C97.38,126.422 91.63,141.292 87.02,153.212 " fill="none" id="&#x30C7;&#x30FC;&#x30BF;&#x5B9A;&#x7FA9;-backto-&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="96.36,109.662,110.1,93.532,109.42,114.712,96.36,109.662" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e44ac7f473de4d385de443a5707a5621]
+reverse link データ定義 to 出力データ--><path codeline="18" d="M139.99,112.402 C150.39,139.462 157.71,174.522 142,201.532 C128.89,224.072 104.86,208.442 91,230.532 C57.45,284.002 65.98,362.872 73.01,401.502 " fill="none" id="&#x30C7;&#x30FC;&#x30BF;&#x5B9A;&#x7FA9;-backto-&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="133.52,115.082,131.96,93.952,146.36,109.502,133.52,115.082" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[b7cbc8f2035a6d103e10a99122df80fa]
+reverse link 結果出力処理 to 入力データ処理--><path codeline="21" d="M197.39,251.132 C211.26,236.662 228.34,222.942 247.5,216.032 C300.81,196.812 449.19,196.812 502.5,216.032 C534.39,227.522 561.57,256.442 578.06,277.472 " fill="none" id="&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;-backto-&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="188.31,261.192,195.2993,259.4172,196.3492,252.2829,189.3599,254.0577,188.31,261.192" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[012ddcad6d407055bd2ea68ef3c5affc]
+reverse link 結果出力処理 to 出力データ処理--><path codeline="22" d="M197.39,251.132 C211.26,236.662 228.34,222.942 247.5,216.032 C290.98,200.362 308.02,200.362 351.5,216.032 C383.39,227.522 410.57,256.442 427.06,277.472 " fill="none" id="&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;-backto-&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="188.31,261.192,195.2993,259.4172,196.3492,252.2829,189.3599,254.0577,188.31,261.192" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[772c6caaf7967a6677290ac67c5ab8e2]
+reverse link 結果出力処理 to 端末処理部.sys--><path codeline="23" d="M197.18,251.462 C209.67,238.732 224.78,226.952 241.67,220.862 C263.39,213.032 635.61,213.032 657.33,220.862 C684.96,230.822 706.81,257.392 720,277.342 " fill="none" id="&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;-backto-&#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8;.sys" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="188.15,261.292,195.1541,259.5767,196.2647,252.4516,189.2605,254.1669,188.15,261.292" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[ccd56d5fd32aea0d86aa7bc51ce85e8b]
+reverse link 結果出力処理 to 入出力データ--><path codeline="26" d="M225.38,301.532 C232.5,301.532 239.62,301.532 246.74,301.532 " fill="none" id="&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;-backto-&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#FFFFFF" points="212.12,301.532,218.1244,305.5254,224.12,301.5188,218.1156,297.5254,212.12,301.532" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="219.9416" y="297.4145">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="23" x="215.9693" y="297.5653">0..n</text><!--MD5=[053b9ef2c91406477f18db17a08fad1a]
+link 入力データ to apoint17217--><path d="M69.62,201.762 C57.85,234.402 37.51,290.802 34.4,299.412 " fill="none" id="&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;-apoint17217" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[6d9855bf05d40a8be46df62630add0a6]
+link apoint17217 to 出力データ--><path d="M34.49,303.902 C37.89,313.322 58.02,369.132 69.67,401.442 " fill="none" id="apoint17217-&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[bdc0f397893b2d313c1ca6c3ff0d2283]
+link apoint17217 to 入出力データ--><path d="M34.83,299.542 C39.71,288.162 65.9,231.392 108.5,216.032 C151.98,200.362 169.02,200.362 212.5,216.032 C243.29,227.132 268.51,256.132 283.61,277.292 " fill="none" id="apoint17217-&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><!--MD5=[f8aac7f651bd4b5fba5954013a330746]
+@startuml
+/' 結果出力処理部のクラスの一覧
+'/
+package 結果出力処理部 {
+  class 結果出力処理{
+    {field} io_data
+    {field} outfp
+  }
+  class 入力データ処理
+  class 出力データ処理
+  abstract class データ定義
+  class 入力データ
+  class 出力データ
+  class 入出力データ
+
+/' パッケージ内の継承の一覧
+'/
+データ定義 <|- - 入力データ
+データ定義 <|- - 出力データ
+/' パッケージ内のコンポジションの一覧
+'/
+結果出力処理 *- 入力データ処理
+結果出力処理 *- 出力データ処理
+結果出力処理 *- 端末処理部.sys
+/' パッケージ内の集約の一覧
+'/
+結果出力処理 "1" o- "0..n" 入出力データ
+/' パッケージ内の関連の一覧
+'/
+入力データ - - 出力データ
+/' パッケージ内の関連を定義するクラスの一覧
+'/
+(入力データ, 出力データ) .. 入出力データ
+}
+@enduml
+
+@startuml
+package 結果出力処理部 {
+  class 結果出力処理{
+    {field} io_data
+    {field} outfp
+  }
+  class 入力データ処理
+  class 出力データ処理
+  abstract class データ定義
+  class 入力データ
+  class 出力データ
+  class 入出力データ
+
+データ定義 <|- - 入力データ
+データ定義 <|- - 出力データ
+結果出力処理 *- 入力データ処理
+結果出力処理 *- 出力データ処理
+結果出力処理 *- 端末処理部.sys
+結果出力処理 "1" o- "0..n" 入出力データ
+入力データ - - 出力データ
+(入力データ, 出力データ) .. 入出力データ
+}
+@enduml
+
+PlantUML version 1.2021.12(Wed Oct 06 01:01:58 JST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: ja
+Country: JP
+--></g></svg></p><h3 class="mume-header" id="%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3">&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;</h3>
+
+<p>&#x672C;&#x7BC0;&#x3067;&#x306F;, &#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x65B9;&#x6CD5;&#x306B;&#x3064;&#x3044;&#x3066;&#x8FF0;&#x3079;&#x308B;&#x3002;</p>
+<h4 class="mume-header" id="%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3%E3%81%A8%E3%81%AF">&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x3068;&#x306F;</h4>
+
+<p>&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x306F;, &#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x632F;&#x308B;&#x821E;&#x3044;&#x3092;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x9593;&#x3067;&#x5B9F;&#x65BD;&#x3059;&#x308B;&#x51E6;&#x7406;&#x306E;&#x6D41;&#x308C;(&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;)&#x3092;&#x56F3;&#x793A;&#x3059;&#x308B;&#x3002;</p>
+<p>&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x3092;, &#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x56F3;&#x306B;&#x8A18;&#x8F09;&#x3055;&#x308C;&#x305F;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3092;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x9593;&#x3067;&#x306E;&#x51E6;&#x7406;&#x306E;&#x6D41;&#x308C;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x3002;</p>
+<h4 class="mume-header" id="%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A6%81%E7%B4%A0">&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x306E;&#x8981;&#x7D20;</h4>
+
+<p>&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x306E;&#x8981;&#x7D20;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x901A;&#x308A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x8981;&#x7D20;</th>
+<th>PlantUML&#x3067;&#x306E;&#x8868;&#x8A18;</th>
+<th>&#x610F;&#x5473;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x53C2;&#x52A0;&#x8005;(Participant)</td>
+<td>participant &#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x540D;</td>
+<td>&#x51E6;&#x7406;&#x3092;&#x884C;&#x3046;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x8868;&#x3059;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x30A2;&#x30AF;&#x30BF;&#x30FC;(Actor)</td>
+<td>actor &#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x540D;</td>
+<td>&#x958B;&#x767A;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x30E6;&#x30FC;&#x30B6;&#x3092;&#x8868;&#x3059;&#x3002;&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x306B;&#x306F;, &#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306E;&#x5229;&#x7528;&#x8005;, &#x958B;&#x767A;&#x5BFE;&#x8C61;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x3068;&#x9023;&#x643A;&#x3057;&#x3066;&#x52D5;&#x4F5C;&#x3059;&#x308B;&#x4ED6;&#x306E;&#x30BD;&#x30D5;&#x30C8;&#x30A6;&#x30A8;&#x30A2;&#x30B7;&#x30B9;&#x30C6;&#x30E0;, &#x30CF;&#x30FC;&#x30C9;&#x30A6;&#x30A8;&#x30A2;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x30E1;&#x30C3;&#x30BB;&#x30FC;&#x30B8;(Message)</td>
+<td>&#x53C2;&#x52A0;&#x8005;(&#x307E;&#x305F;&#x306F;&#x30A2;&#x30AF;&#x30BF;&#x30FC;)1 <code>-&gt;</code> &#x53C2;&#x52A0;&#x8005;(&#x307E;&#x305F;&#x306F;&#x30A2;&#x30AF;&#x30BF;&#x30FC;)2 : <code>&#x51E6;&#x7406;&#x5185;&#x5BB9;</code></td>
+<td>&#x53C2;&#x52A0;&#x8005;(&#x307E;&#x305F;&#x306F;&#x30A2;&#x30AF;&#x30BF;&#x30FC;)1 &#x304B;&#x3089; &#x53C2;&#x52A0;&#x8005;(&#x307E;&#x305F;&#x306F;&#x30A2;&#x30AF;&#x30BF;&#x30FC;)2&#x306B;<code>&#x51E6;&#x7406;&#x5185;&#x5BB9;</code>&#x306B;&#x8A18;&#x8F09;&#x3055;&#x308C;&#x305F;&#x51E6;&#x7406;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3002;<code>&#x51E6;&#x7406;&#x5185;&#x5BB9;</code>&#x306B;&#x306F;, &#x53C2;&#x52A0;&#x8005;(&#x307E;&#x305F;&#x306F;&#x30A2;&#x30AF;&#x30BF;&#x30FC;)2&#x304C;&#x5B9F;&#x65BD;&#x3059;&#x308B;&#x51E6;&#x7406;&#x306E;&#x5185;&#x5BB9;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;&#x53C2;&#x52A0;&#x8005;(&#x307E;&#x305F;&#x306F;&#x30A2;&#x30AF;&#x30BF;&#x30FC;)2&#x304C;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x5834;&#x5408;&#x306F;, &#x5FC5;&#x8981;&#x306B;&#x5FDC;&#x3058;&#x3066;, <code>&#x51E6;&#x7406;&#x5185;&#x5BB9;(&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x540D;)</code>&#x306E;&#x5F62;&#x5F0F;&#x3067;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x540D;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;, &#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x8868;&#x8A18;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>PlantUML&#x3067;&#x306F;, <code>__</code>&#x306F;, &#x4E0B;&#x7DDA;&#x8868;&#x793A;&#x6307;&#x793A;&#x3068;&#x3057;&#x3066;&#x6271;&#x308F;&#x308C;&#x308B;&#x3002;&#x51E6;&#x7406;&#x5185;&#x5BB9;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x540D;&#x304C;<code>__</code>&#x304B;&#x3089;&#x958B;&#x59CB;&#x3055;&#x308C;&#x308B;&#x5834;&#x5408;&#x306F;, <code>~</code>&#x3092;&#x3064;&#x3051;&#x308B;&#x3053;&#x3068;&#x3067;<code>__</code>&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x308B;(&#x4F8B;:<code>~__init__</code>)&#x3002;</p>
+<h4 class="mume-header" id="%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9%E5%9B%B3%E3%81%AE%E8%A1%A8%E8%A8%98%E6%B3%95">&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x6CD5;</h4>
+
+<p>&#x672C;&#x958B;&#x767A;&#x3067;&#x306F;, &#x6240;&#x5B9A;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3092;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x3092;&#x4EE5;&#x4E0B;&#x306E;&#x5F62;&#x5F0F;&#x306E;PlantUML&#x8868;&#x8A18;&#x3067;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+<pre data-role="codeBlock" data-info="text" class="language-text">&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x306E;&#x4E00;&#x89A7;
+&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3092;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;
+</pre><p>&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x4F8B;&#x3092;&#x4EE5;&#x4E0B;&#x306B;&#x793A;&#x3059;&#x3002;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x540D;&#x3092;&#x542B;&#x3081;&#x3066;&#x53C2;&#x52A0;&#x8005;&#x3068;&#x306A;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;, <code>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x540D;.&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x540D;</code>&#x3068;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+<pre data-role="codeBlock" data-info="text" class="language-text">/&apos; &#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x306E;&#x4E00;&#x89A7;
+&apos;/
+participant &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;
+participant &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;
+actor &#x5229;&#x7528;&#x8005;
+participant &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;
+participant &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;
+participant &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;
+participant &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;
+participant &#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8;.sys
+actor &#x7AEF;&#x672B;
+/&apos; &#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&quot;&#x7D50;&#x679C;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;&quot;&#x3092;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;
+&apos;/
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406; -&gt; &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;:&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x751F;&#x6210;&#x3059;&#x308B;(~__init__)
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406; -&gt; &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;:&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;(get_input_data)
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406; -&gt; &#x5229;&#x7528;&#x8005;: &#x5229;&#x7528;&#x8005;&#x306B;&#x5165;&#x529B;&#x3092;&#x4FC3;&#x3059;
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406; -&gt; &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;:&#x5229;&#x7528;&#x8005;&#x304B;&#x3089;&#x306E;&#x5165;&#x529B;&#x5024;&#x3092;&#x5143;&#x306B;&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x751F;&#x6210;&#x3059;&#x308B;(~__init__)
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406; -&gt; &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;: &#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;(get_output_data)
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406; -&gt; &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;: &#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x751F;&#x6210;&#x3059;&#x308B;(~__init__)
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406; -&gt; &#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;:&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x306B;&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3068;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3068;&#x3092;&#x30BB;&#x30C3;&#x30C8;&#x3059;&#x308B;(set_data_pair)
+&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406; -&gt; &#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8;.sys: &#x6A19;&#x6E96;&#x51FA;&#x529B;&#x306B;&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;(write)
+&#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8;.sys -&gt; &#x7AEF;&#x672B;: &#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;
+</pre><p>&#x4E0A;&#x8A18;&#x3092;&#x56F3;&#x793A;&#x3059;&#x308B;&#x3068;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308B;&#x3002;</p>
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="495px" preserveAspectRatio="none" style="width:1695px;height:495px;background:#FFFFFF;" version="1.1" viewBox="0 0 1695 495" width="1695px" zoomAndPan="magnify"><defs><filter height="300%" id="f1wva16bfg2c62" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="107" x2="107" y1="92.2719" y2="407.6881"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="336" x2="336" y1="92.2719" y2="407.6881"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="479" x2="479" y1="92.2719" y2="407.6881"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="703" x2="703" y1="92.2719" y2="407.6881"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="917" x2="917" y1="92.2719" y2="407.6881"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1131" x2="1131" y1="92.2719" y2="407.6881"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1338" x2="1338" y1="92.2719" y2="407.6881"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1506" x2="1506" y1="92.2719" y2="407.6881"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1673.5" x2="1673.5" y1="92.2719" y2="407.6881"/><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="200" x="5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="186" x="12" y="76.2399">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="200" x="5" y="406.6881"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="186" x="12" y="429.928">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="214" x="227" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="200" x="234" y="76.2399">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="214" x="227" y="406.6881"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="200" x="234" y="429.928">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="455" y="88.2399">&#x5229;&#x7528;&#x8005;</text><ellipse cx="479" cy="15" fill="#FEFECE" filter="url(#f1wva16bfg2c62)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M479,23 L479,50 M466,31 L492,31 M479,50 L466,65 M479,50 L492,65 " fill="none" filter="url(#f1wva16bfg2c62)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="455" y="422.928">&#x5229;&#x7528;&#x8005;</text><ellipse cx="479" cy="436.96" fill="#FEFECE" filter="url(#f1wva16bfg2c62)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M479,444.96 L479,471.96 M466,452.96 L492,452.96 M479,471.96 L466,486.96 M479,471.96 L492,486.96 " fill="none" filter="url(#f1wva16bfg2c62)" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="186" x="608" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="615" y="76.2399">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="186" x="608" y="406.6881"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="615" y="429.928">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="214" x="808" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="200" x="815" y="76.2399">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="214" x="808" y="406.6881"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="200" x="815" y="429.928">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x51E6;&#x7406;</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="186" x="1036" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="1043" y="76.2399">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="186" x="1036" y="406.6881"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="1043" y="429.928">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="200" x="1236" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="186" x="1243" y="76.2399">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="200" x="1236" y="406.6881"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="186" x="1243" y="429.928">&#x7D50;&#x679C;&#x51FA;&#x529B;&#x51E6;&#x7406;&#x90E8;.&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="109" x="1450" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="95" x="1457" y="76.2399">&#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8;.sys</text><rect fill="#FEFECE" filter="url(#f1wva16bfg2c62)" height="34.2719" style="stroke:#A80036;stroke-width:1.5;" width="109" x="1450" y="406.6881"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="95" x="1457" y="429.928">&#x7AEF;&#x672B;&#x51E6;&#x7406;&#x90E8;.sys</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="1656.5" y="88.2399">&#x7AEF;&#x672B;</text><ellipse cx="1673.5" cy="15" fill="#FEFECE" filter="url(#f1wva16bfg2c62)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M1673.5,23 L1673.5,50 M1660.5,31 L1686.5,31 M1673.5,50 L1660.5,65 M1673.5,50 L1686.5,65 " fill="none" filter="url(#f1wva16bfg2c62)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="1656.5" y="422.928">&#x7AEF;&#x672B;</text><ellipse cx="1673.5" cy="436.96" fill="#FEFECE" filter="url(#f1wva16bfg2c62)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M1673.5,444.96 L1673.5,471.96 M1660.5,452.96 L1686.5,452.96 M1673.5,471.96 L1660.5,486.96 M1673.5,471.96 L1686.5,486.96 " fill="none" filter="url(#f1wva16bfg2c62)" style="stroke:#A80036;stroke-width:2.0;"/><polygon fill="#A80036" points="1326,123.0959,1336,127.0959,1326,131.0959,1330,127.0959" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="107" x2="1332" y1="127.0959" y2="127.0959"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="200" x="114" y="121.3519">&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x751F;&#x6210;&#x3059;&#x308B;(__init__)</text><polygon fill="#A80036" points="324,155.9199,334,159.9199,324,163.9199,328,159.9199" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="107" x2="330" y1="159.9199" y2="159.9199"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="205" x="114" y="154.1759">&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;(get_input_data)</text><polygon fill="#A80036" points="467,188.744,477,192.744,467,196.744,471,192.744" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="336" x2="473" y1="192.744" y2="192.744"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="117" x="343" y="187">&#x5229;&#x7528;&#x8005;&#x306B;&#x5165;&#x529B;&#x3092;&#x4FC3;&#x3059;</text><polygon fill="#A80036" points="691,221.568,701,225.568,691,229.568,695,225.568" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="336" x2="697" y1="225.568" y2="225.568"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="343" x="343" y="219.824">&#x5229;&#x7528;&#x8005;&#x304B;&#x3089;&#x306E;&#x5165;&#x529B;&#x5024;&#x3092;&#x5143;&#x306B;&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x751F;&#x6210;&#x3059;&#x308B;(__init__)</text><polygon fill="#A80036" points="905,254.392,915,258.392,905,262.392,909,258.392" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="107" x2="911" y1="258.392" y2="258.392"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="214" x="114" y="252.648">&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x5F97;&#x308B;(get_output_data)</text><polygon fill="#A80036" points="1119,287.216,1129,291.216,1119,295.216,1123,291.216" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="917" x2="1125" y1="291.216" y2="291.216"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="187" x="924" y="285.472">&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x751F;&#x6210;&#x3059;&#x308B;(__init__)</text><polygon fill="#A80036" points="1326,320.04,1336,324.04,1326,328.04,1330,324.04" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="107" x2="1332" y1="324.04" y2="324.04"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="416" x="114" y="318.296">&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x306B;&#x5165;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3068;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3068;&#x3092;&#x30BB;&#x30C3;&#x30C8;&#x3059;&#x308B;(set_data_pair)</text><polygon fill="#A80036" points="1494.5,352.864,1504.5,356.864,1494.5,360.864,1498.5,356.864" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="107" x2="1500.5" y1="356.864" y2="356.864"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="247" x="114" y="351.12">&#x6A19;&#x6E96;&#x51FA;&#x529B;&#x306B;&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;(write)</text><polygon fill="#A80036" points="1661.5,385.6881,1671.5,389.6881,1661.5,393.6881,1665.5,389.6881" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1506.5" x2="1667.5" y1="389.6881" y2="389.6881"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143" x="1513.5" y="383.9441">&#x5165;&#x51FA;&#x529B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;</text><!--MD5=[44a4547d4996a8c8993f6318f93945e3]
+@startuml
+/' アクターや参加者の一覧
+'/
+participant 結果出力処理部.結果出力処理
+participant 結果出力処理部.入力データ処理
+actor 利用者
+participant 結果出力処理部.入力データ
+participant 結果出力処理部.出力データ処理
+participant 結果出力処理部.出力データ
+participant 結果出力処理部.入出力データ
+participant 端末処理部.sys
+actor 端末
+/' ユースケース"結果を表示する"を実現するシーケンス
+'/
+結果出力処理部.結果出力処理 -> 結果出力処理部.入出力データ:入出力データを生成する(~__init__)
+結果出力処理部.結果出力処理 -> 結果出力処理部.入力データ処理:入力データを得る(get_input_data)
+結果出力処理部.入力データ処理 -> 利用者: 利用者に入力を促す
+結果出力処理部.入力データ処理 -> 結果出力処理部.入力データ:利用者からの入力値を元に入力データを生成する(~__init__)
+結果出力処理部.結果出力処理 -> 結果出力処理部.出力データ処理: 出力データを得る(get_output_data)
+結果出力処理部.出力データ処理 -> 結果出力処理部.出力データ: 出力データを生成する(~__init__)
+結果出力処理部.結果出力処理 -> 結果出力処理部.入出力データ:入出力データに入力データと出力データとをセットする(set_data_pair)
+結果出力処理部.結果出力処理 -> 端末処理部.sys: 標準出力に入出力データを表示する(write)
+端末処理部.sys -> 端末: 入出力データを表示する
+@enduml
+
+@startuml
+participant 結果出力処理部.結果出力処理
+participant 結果出力処理部.入力データ処理
+actor 利用者
+participant 結果出力処理部.入力データ
+participant 結果出力処理部.出力データ処理
+participant 結果出力処理部.出力データ
+participant 結果出力処理部.入出力データ
+participant 端末処理部.sys
+actor 端末
+結果出力処理部.結果出力処理 -> 結果出力処理部.入出力データ:入出力データを生成する(~__init__)
+結果出力処理部.結果出力処理 -> 結果出力処理部.入力データ処理:入力データを得る(get_input_data)
+結果出力処理部.入力データ処理 -> 利用者: 利用者に入力を促す
+結果出力処理部.入力データ処理 -> 結果出力処理部.入力データ:利用者からの入力値を元に入力データを生成する(~__init__)
+結果出力処理部.結果出力処理 -> 結果出力処理部.出力データ処理: 出力データを得る(get_output_data)
+結果出力処理部.出力データ処理 -> 結果出力処理部.出力データ: 出力データを生成する(~__init__)
+結果出力処理部.結果出力処理 -> 結果出力処理部.入出力データ:入出力データに入力データと出力データとをセットする(set_data_pair)
+結果出力処理部.結果出力処理 -> 端末処理部.sys: 標準出力に入出力データを表示する(write)
+端末処理部.sys -> 端末: 入出力データを表示する
+@enduml
+
+PlantUML version 1.2021.12(Wed Oct 06 01:01:58 JST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: ja
+Country: JP
+--></g></svg></p><h5 class="mume-header" id="%E3%82%A2%E3%82%AF%E3%82%BF%E3%83%BC%E3%82%84%E5%8F%82%E5%8A%A0%E8%80%85%E3%81%AE%E4%B8%80%E8%A6%A7%E3%82%92%E8%A8%98%E8%BC%89%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AE%E9%A0%86%E5%BA%8F">&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x306E;&#x4E00;&#x89A7;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x969B;&#x306E;&#x9806;&#x5E8F;</h5>
+
+<p>PlantUML&#x3067;&#x306F;, &#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x306F;&#x8A18;&#x8F09;&#x9806;&#x306B;&#x5DE6;&#x304B;&#x3089;&#x53F3;&#x306B;&#x914D;&#x7F6E;&#x3055;&#x308C;&#x308B;&#x3002;</p>
+<p>&#x518D;&#x5E30;&#x547C;&#x3073;&#x51FA;&#x3057;&#x7B87;&#x6240;&#x3092;&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x304B;&#x3089;&#x5224;&#x65AD;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;, &#x4EE5;&#x4E0B;&#x306E;&#x898F;&#x5247;&#x3067;&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x306E;&#x4E00;&#x89A7;&#x3092;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;&#x672C;&#x898F;&#x5247;&#x306B;&#x5F93;&#x3063;&#x3066;&#x8A18;&#x8F09;&#x3055;&#x308C;&#x305F;&#x30B7;&#x30FC;&#x30B1;&#x30F3;&#x30B9;&#x56F3;&#x3067;&#x306F;, &#x53F3;&#x5074;&#x306E;&#x53C2;&#x52A0;&#x8005;&#x304B;&#x3089;&#x3088;&#x308A;&#x5DE6;&#x5074;&#x306B;&#x3042;&#x308B;&#x53C2;&#x52A0;&#x8005;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x7B87;&#x6240;&#x306F;, &#x518D;&#x5E30;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3092;&#x610F;&#x5473;&#x3059;&#x308B;&#x3002;</p>
+<ol>
+<li>
+<p>&#x539F;&#x5247;&#x3068;&#x3057;&#x3066;, &#x81EA;&#x4F5C;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;, &#x30B5;&#x30FC;&#x30C9;&#x30D1;&#x30FC;&#x30C6;&#x30A3;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306B;&#x3088;&#x3063;&#x3066;&#x751F;&#x6210;&#x3055;&#x308C;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;, (&#x8A00;&#x8A9E;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x304A;&#x3088;&#x3073;&#x6A19;&#x6E96;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x30FB;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306A;&#x3069;&#x306E;&#xFF09;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x306B;&#x3088;&#x3063;&#x3066;&#x751F;&#x6210;&#x3055;&#x308C;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x9806;&#x306B;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+</li>
+<li>
+<p>&#x518D;&#x5E30;&#x547C;&#x3073;&#x51FA;&#x3057;&#x306E;&#x5834;&#x5408;&#x3092;&#x9664;&#x304D;, &#x547C;&#x3073;&#x51FA;&#x3059;&#x5074;&#x306E;&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x5074;&#x306E;&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x3088;&#x308A;&#x5148;&#x306B;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3002;</p>
+</li>
+<li>
+<p>1.&#x306E;&#x539F;&#x5247;&#x306B;&#x5F93;&#x3063;&#x305F;&#x5834;&#x5408;&#x306B;, &#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x5074;&#x306E;&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x304C;&#x305D;&#x306E;&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x5168;&#x3066;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x53F3;&#x5074;&#x306B;&#x914D;&#x7F6E;&#x3067;&#x304D;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;, 2.&#x306E;&#x898F;&#x5247;(&#x547C;&#x3073;&#x51FA;&#x3059;&#x5074;&#x306E;&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x5074;&#x306E;&#x30A2;&#x30AF;&#x30BF;&#x30FC;&#x3084;&#x53C2;&#x52A0;&#x8005;&#x3088;&#x308A;&#x5148;&#x306B;&#x8A18;&#x8F09;&#x3059;&#x308B;&#x3053;&#x3068;&#x3092;&#x512A;&#x5148;&#x3059;&#x308B;)&#x3092;&#x512A;&#x5148;&#x3059;&#x308B;&#x3002;</p>
+</li>
+</ol>
+<h3 class="mume-header" id="%E7%8A%B6%E6%85%8B%E3%83%9E%E3%82%B7%E3%83%B3%E5%9B%B3">&#x72B6;&#x614B;&#x30DE;&#x30B7;&#x30F3;&#x56F3;</h3>
+
+<p>&#x672C;&#x7BC0;&#x3067;&#x306F;, &#x72B6;&#x614B;&#x30DE;&#x30B7;&#x30F3;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x65B9;&#x6CD5;&#x306B;&#x3064;&#x3044;&#x3066;&#x8FF0;&#x3079;&#x308B;&#x3002;</p>
+<h4 class="mume-header" id="%E7%8A%B6%E6%85%8B%E3%83%9E%E3%82%B7%E3%83%B3%E5%9B%B3%E3%81%A8%E3%81%AF">&#x72B6;&#x614B;&#x30DE;&#x30B7;&#x30F3;&#x56F3;&#x3068;&#x306F;</h4>
+
+<p>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x5916;&#x90E8;&#x304B;&#x3089;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306B;&#x5FDC;&#x3058;&#x3066;&#x5909;&#x5316;&#x3059;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x5185;&#x90E8;&#x306E;&#x72B6;&#x614B;&#x306E;&#x9077;&#x79FB;&#x3068;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x53D7;&#x4FE1;&#x3084;&#x72B6;&#x614B;&#x9077;&#x79FB;&#x3092;&#x5951;&#x6A5F;&#x3068;&#x3057;&#x3066;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x632F;&#x308B;&#x821E;&#x3044;&#x3092;&#x56F3;&#x793A;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x72B6;&#x614B;&#x30DE;&#x30B7;&#x30F3;&#x56F3;&#x3092;&#x7528;&#x3044;&#x308B;&#x3002;</p>
+<h4 class="mume-header" id="%E7%8A%B6%E6%85%8B%E3%83%9E%E3%82%B7%E3%83%B3%E5%9B%B3%E3%81%AE%E8%A6%81%E7%B4%A0">&#x72B6;&#x614B;&#x30DE;&#x30B7;&#x30F3;&#x56F3;&#x306E;&#x8981;&#x7D20;</h4>
+
+<h4 class="mume-header" id="%E7%8A%B6%E6%85%8B%E3%83%9E%E3%82%B7%E3%83%B3%E5%9B%B3%E3%81%AE%E8%A1%A8%E8%A8%98%E6%B3%95">&#x72B6;&#x614B;&#x30DE;&#x30B7;&#x30F3;&#x56F3;&#x306E;&#x8868;&#x8A18;&#x6CD5;</h4>
+
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
